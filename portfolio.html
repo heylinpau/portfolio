@@ -3,316 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulin's Interactive Portfolio</title>
-    <meta name="description" content="Paulin Clement Twakeshimana's interactive portfolio - a next-generation CLI experience">
-    <meta name="keywords" content="portfolio, interactive, developer, software engineer, web development">
+    <title>Paulin Clement Twakeshimana | Software Engineer & AI Specialist</title>
+    <meta name="description" content="Professional portfolio of Paulin Clement Twakeshimana - Software Engineer specializing in AI, Full-Stack Development, and System Architecture">
+    <meta name="keywords" content="software engineer, AI specialist, full-stack developer, portfolio, machine learning">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <style>
         :root {
-            --bg: #000;
-            --fg: #fff;
-            --accent: #00ff41;
-            --header-bg: #000;
-            --border: #00ff41;
-            --timeline-dot: #00ff41;
-            --timeline-line: #00ff41;
-            --blue: #00bfff;
-            --red: #ff0055;
-            --yellow: #ffcc00;
-            --purple: #cc66ff;
-            --gray: #888;
-            --card-bg: #222;
-            --terminal-bg: #0a0a0a;
-            --terminal-border: #00ff41;
-            --terminal-prompt: #00ff41;
-            --terminal-cmd: #00bfff;
-            --terminal-output: #fff;
-            --terminal-link: #00bfff;
-            --terminal-error: #ff5555;
-            --terminal-success: #55ff55;
-            --terminal-warning: #ffff55;
-            --terminal-info: #55ffff;
+            /* Professional dark theme - easy on eyes */
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1420;
+            --bg-card: #151b2b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #10b981;
+            --accent-glow: #2563eb;
+            --border: #1e2a3e;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #06b6d4;
+            --terminal-bg: #070b14;
+            --terminal-border: #1e2a3e;
+            --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.1);
         }
         
-        /* Dark mode is default, but we'll add a light mode option */
-        [data-theme="light"] {
-            --bg: #f0f0f0;
-            --fg: #222;
-            --accent: #0077ff;
-            --header-bg: #f0f0f0;
-            --border: #0077ff;
-            --timeline-dot: #0077ff;
-            --timeline-line: #0077ff;
-            --blue: #0077ff;
-            --red: #ff0055;
-            --yellow: #ffcc00;
-            --purple: #cc66ff;
-            --gray: #555;
-            --card-bg: #f8f8f8;
-            --terminal-bg: #1a1a1a;
-            --terminal-border: #0077ff;
-            --terminal-prompt: #0077ff;
-            --terminal-cmd: #0077ff;
-            --terminal-output: #222;
-            --terminal-link: #0077ff;
-            --terminal-error: #ff5555;
-            --terminal-success: #55ff55;
-            --terminal-warning: #ffff55;
-            --terminal-info: #55ffff;
-        }
-        
-        /* Cyberpunk mode */
-        [data-theme="cyberpunk"] {
-            --bg: #0a0025;
-            --fg: #ff00ea;
-            --accent: #00fff7;
-            --header-bg: #0a0025;
-            --border: #ff00ea;
-            --timeline-dot: #ff00ea;
-            --timeline-line: #00fff7;
-            --blue: #00fff7;
-            --red: #ff0055;
-            --yellow: #ffcc00;
-            --purple: #ff00ea;
-            --gray: #aaa;
-            --card-bg: #1a0036;
-            --terminal-bg: #0a0025;
-            --terminal-border: #ff00ea;
-            --terminal-prompt: #ff00ea;
-            --terminal-cmd: #00fff7;
-            --terminal-output: #ff00ea;
-            --terminal-link: #00fff7;
-            --terminal-error: #ff5555;
-            --terminal-success: #55ff55;
-            --terminal-warning: #ffff55;
-            --terminal-info: #55ffff;
-        }
-        
-        /* Matrix theme */
-        [data-theme="matrix"] {
-            --bg: #000;
-            --fg: #0f0;
-            --accent: #0f0;
-            --header-bg: #000;
-            --border: #0f0;
-            --timeline-dot: #0f0;
-            --timeline-line: #0f0;
-            --blue: #0f0;
-            --red: #ff0055;
-            --yellow: #ffcc00;
-            --purple: #cc66ff;
-            --gray: #333;
-            --card-bg: #111;
-            --terminal-bg: #000;
-            --terminal-border: #0f0;
-            --terminal-prompt: #0f0;
-            --terminal-cmd: #0f0;
-            --terminal-output: #0f0;
-            --terminal-link: #0f0;
-            --terminal-error: #ff5555;
-            --terminal-success: #55ff55;
-            --terminal-warning: #ffff55;
-            --terminal-info: #55ffff;
-        }
-        
-        html, body {
-            height: 100%;
+        * {
             margin: 0;
             padding: 0;
-            background: var(--bg);
-            color: var(--fg);
-            font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
-            font-size: 15px;
-            min-height: 100vh;
-            width: 100vw;
-            overflow-x: hidden;
-            transition: background 0.5s, color 0.5s;
+            box-sizing: border-box;
         }
         
         body {
-            display: flex;
-            flex-direction: row;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
             min-height: 100vh;
+            position: relative;
         }
         
-        #particles-js {
+        /* Animated background */
+        .animated-bg {
             position: fixed;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
         }
         
-        /* Left Side */
-        #left-half {
-            width: 45vw;
-            min-width: 350px;
-            background: linear-gradient(160deg, #111 60%, #222 100%);
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header / Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+            transition: all 0.3s;
+        }
+        
+        .badge:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            padding: 0 0 0 40px;
-            position: relative;
-            border-right: 2px solid var(--border);
+            gap: 1.5rem;
         }
         
-        #profile-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: var(--accent);
-            margin-top: 32px;
-            margin-bottom: 0;
-            letter-spacing: 1px;
-            font-family: inherit;
-            text-shadow: 0 2px 8px #003800;
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
             transition: color 0.3s;
         }
         
-        #profile-title:hover {
-            color: var(--purple);
-            text-shadow: 0 0 10px var(--purple);
+        .contact-item:hover {
+            color: var(--accent-primary);
         }
         
-        #profile-subtitle {
-            color: var(--fg);
-            font-size: 0.95em;
-            margin-bottom: 40px;
-            margin-top: 0;
-            letter-spacing: 2px;
-            font-family: inherit;
+        .contact-item .emoji {
+            font-size: 1.2rem;
+            width: 24px;
         }
         
-        /* Badge container and styling */
-        #badge-container {
-            position: relative;
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.2s;
+        .skill-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+            transition: all 0.3s;
         }
         
-        #badge-container:hover {
-            transform: scale(1.02);
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: scale(1.05);
         }
         
-        #badge-clip {
-            width: 40px;
-            height: 20px;
-            background: linear-gradient(to bottom, #c0c0c0, #a0a0a0, #c0c0c0);
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            transition: background 0.3s;
-        }
-        
-        #badge-container:hover #badge-clip {
-            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0, #e0e0e0);
-        }
-        
-        #badge-clip::before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 8px;
-            background: #808080;
-            border-radius: 4px;
-            top: 6px;
-            left: 5px;
-        }
-        
-        #card-container {
-            perspective: 1000px;
-            width: 240px;
-            height: 320px;
-            position: relative;
-            margin-top: 0;
-            z-index: 1;
-            cursor: grab;
-            transition: transform 0.2s;
-        }
-        
-        #card-container:active {
-            cursor: grabbing;
-        }
-        
-        #card {
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            background-color: var(--card-bg);
-            border: 2px solid #333;
+        /* Terminal Section */
+        .terminal-section {
+            background: var(--bg-card);
             border-radius: 16px;
             overflow: hidden;
-            position: relative;
-            top: 0;
-            transition: transform 0.1s, scale 0.2s, border 0.3s;
-            box-shadow: 0 8px 32px #000a;
-            transform: rotateY(0deg) rotateX(0deg);
+            border: 1px solid var(--border);
         }
         
-        #card:hover {
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 40px #003800, 0 0 0 transparent;
-        }
-        
-        #card.shake {
-            animation: shake 0.5s;
-        }
-        
-        #card .front, #card .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transition: transform 0.5s;
-        }
-        
-        #card .front {
-            transform: rotateY(0deg);
-        }
-        
-        #card .back {
-            transform: rotateY(180deg);
-        }
-        
-        #card .front img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(1);
-            transition: filter 0.3s;
-        }
-        
-        #card:hover .front img {
-            filter: grayscale(0);
-        }
-        
-        #card .back {
-            background-color: var(--card-bg);
-            color: var(--fg);
+        .terminal-header {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            flex-direction: column;
+            gap: 1rem;
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-10px); }
-            40%, 80% { transform: translateX(10px); }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--error);
+        }
+        
+        .terminal-dot:nth-child(2) {
+            background: var(--warning);
+        }
+        
+        .terminal-dot:nth-child(3) {
+            background: var(--success);
+        }
+        
+        .terminal-title {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: auto;
+            font-family: monospace;
+        }
+        
+        #terminal {
+            background: var(--terminal-bg);
+            padding: 1.5rem;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        #input-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        #prompt {
+            color: var(--success);
+            font-family: monospace;
+        }
+        
+        #input {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-family: monospace;
+            font-size: 0.9rem;
+            flex: 1;
+            outline: none;
+        }
+        
+        .output {
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+        }
+        
+        .output.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .command {
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+        
+        .error {
+            color: var(--error);
+        }
+        
+        .success {
+            color: var(--success);
+        }
+        
+        .info {
+            color: var(--info);
         }
         
         /* Timeline */
         .timeline {
-            margin: 20px 0;
-            padding-left: 30px;
             position: relative;
+            padding-left: 2rem;
         }
         
         .timeline::before {
@@ -321,999 +339,619 @@
             left: 8px;
             top: 0;
             bottom: 0;
-            width: 4px;
-            background: var(--timeline-line);
-            border-radius: 2px;
+            width: 2px;
+            background: var(--accent-primary);
         }
         
-        .timeline-event {
+        .timeline-item {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 1.5rem;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
+            transform: translateX(-20px);
+            transition: all 0.5s;
         }
         
-        .timeline-event.visible {
+        .timeline-item.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
         
         .timeline-dot {
             position: absolute;
-            left: -4px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--timeline-dot);
+            left: -1.7rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            border: 2px solid var(--card-bg);
-            z-index: 1;
-            animation: pulse-dot 1.5s infinite alternate;
+            background: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
         }
         
-        @keyframes pulse-dot {
-            0% { box-shadow: 0 0 0 0 var(--accent);}
-            100% { box-shadow: 0 0 10px 6px var(--accent);}
-        }
-        
-        /* CRITICAL FIX: Force timeline content to white regardless of theme */
         .timeline-content {
-            margin-left: 30px;
-            background: #181818;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            color: #fff !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            font-family: inherit;
-            font-size: 0.95em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-primary);
         }
         
-        /* Make titles green while keeping descriptions white */
         .timeline-content strong {
-            color: var(--accent) !important;
-            font-weight: bold;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
         }
         
-        .timeline-content .dates {
-            color: var(--gray) !important;
-            float: right;
-            font-style: italic;
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
         
-        /* CRITICAL FIX: Force list items to white */
-        .timeline-content ul {
-            margin: 5px 0 0 15px;
-            padding: 0;
-            color: #fff !important;
+        .project-card {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
         }
         
-        .timeline-content li {
-            margin-bottom: 3px;
-            color: #fff !important;
-        }
-        
-        .timeline-content:hover {
+        .project-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
         }
         
-        /* Terminal */
-        #right-half {
-            flex: 1;
+        .project-title {
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-tech {
             display: flex;
-            flex-direction: column;
-            min-width: 350px;
-            background: var(--bg);
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         
-        #header {
-            background-color: var(--header-bg);
-            padding: 10px 20px;
+        .tech-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
             display: flex;
-            justify-content: flex-start;
-            gap: 20px;
-            border-bottom: 2px solid var(--border);
-            align-items: center;
-            position: relative;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            justify-content: center;
         }
         
-        #header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-        
-        #header:hover::after {
-            transform: scaleX(1);
-        }
-        
-        #header a {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 14px;
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
             cursor: pointer;
-            font-family: inherit;
-            background: none;
-            border: none;
-            outline: none;
-            transition: color 0.3s, transform 0.2s;
-            position: relative;
-            padding: 3px 0;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
         
-        #header a:hover {
-            color: var(--fg);
-            text-decoration: underline;
-            transform: translateY(-1px);
+        .action-btn:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
         }
         
-        #header a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.3s;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
         
-        #header a:hover::after {
-            width: 100%;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
         }
         
-        #theme-switcher {
-            margin-left: auto;
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 1.2em;
-            padding: 0 5px;
-            transition: transform 0.3s;
-        }
-        
-        #theme-switcher:hover {
-            transform: rotate(15deg);
-        }
-        
-        #terminal {
-            flex-grow: 1;
-            padding: 32px 32px 0 32px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            box-sizing: border-box;
-            font-size: 0.95em;
-            position: relative;
-            font-family: inherit;
-            background: var(--terminal-bg);
-            border: 1.5px solid var(--terminal-border);
-            border-top: none;
-            margin: 0 24px 24px 24px;
-            margin-top: 0;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        #terminal:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-        }
-        
-        #input-line {
-            display: flex;
-            align-items: center;
-        }
-        
-        #prompt {
-            color: var(--terminal-prompt);
-            font-family: inherit;
-        }
-        
-        #input {
-            background: none;
-            border: none;
-            color: var(--terminal-cmd);
-            font-family: inherit;
-            font-size: inherit;
-            outline: none;
-            flex-grow: 1;
-            caret-color: var(--accent);
-            animation: blink-cursor 1s steps(1) infinite;
-        }
-        
-        @keyframes blink-cursor {
-            0%, 100% { border-right: 2px solid var(--accent);}
-            50% { border-right: 2px solid transparent;}
-        }
-        
-        .output {
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        
-        .output.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        a, .link {
-            color: var(--terminal-link);
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        
-        a:hover, .link:hover {
-            color: var(--accent);
-        }
-        
-        .email {
-            color: var(--terminal-link);
-            text-decoration: underline;
-        }
-        
-        .error {
-            color: var(--terminal-error);
-        }
-        
-        .success {
-            color: var(--terminal-success);
-        }
-        
-        .warning {
-            color: var(--terminal-warning);
-        }
-        
-        .info {
-            color: var(--terminal-info);
-        }
-        
-        .command {
-            color: var(--terminal-cmd);
-            font-weight: bold;
-        }
-        
-        .path {
-            color: var(--purple);
-        }
-        
-        .directory {
-            color: var(--yellow);
-        }
-        
-        .file {
-            color: var(--blue);
-        }
-        
-        .flag {
-            color: var(--red);
-        }
-        
-        .highlight {
-            background-color: rgba(0, 255, 65, 0.1);
-            padding: 2px 4px;
-            border-radius: 3px;
-            color: var(--accent);
-        }
-        
-        /* Matrix rain effect */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* Pong game modal */
-        #pong-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--terminal-bg);
-            border: 2px solid var(--terminal-border);
-            padding: 20px;
-            z-index: 1000;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
-            display: none;
-            border-radius: 8px;
-        }
-        
-        #pong-canvas {
-            background: #000;
-            display: block;
-            margin: 0 auto;
-        }
-        
-        #pong-modal button {
-            color: var(--terminal-prompt);
-            background: none;
-            border: 1px solid var(--terminal-border);
-            cursor: pointer;
-            margin-top: 10px;
-            padding: 5px 15px;
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
             border-radius: 4px;
-            transition: all 0.2s;
-        }
-        
-        #pong-modal button:hover {
-            background: var(--terminal-border);
-            color: var(--terminal-bg);
-        }
-        
-        /* QR code modal */
-        #qr-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--terminal-bg);
-            border: 2px solid var(--terminal-border);
-            padding: 20px;
-            z-index: 1000;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
-            display: none;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        #qr-code {
-            margin: 10px 0;
-        }
-        
-        /* Download resume button */
-        #download-resume {
-            background: none;
-            border: 1px solid var(--terminal-border);
-            color: var(--terminal-border);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-left: 10px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-        
-        #download-resume:hover {
-            background: var(--terminal-border);
-            color: var(--terminal-bg);
-        }
-        
-        /* Konami code animation */
-        .konami-active {
-            animation: konami-glow 1.5s infinite alternate;
-        }
-        
-        @keyframes konami-glow {
-            from { text-shadow: 0 0 5px var(--accent); }
-            to { text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent); }
         }
         
         /* Responsive */
-        @media (max-width: 900px) {
-            #left-half, #right-half {
-                width: 100vw;
-                min-width: 0;
-                padding: 0;
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
             }
             
-            body {
-                flex-direction: column;
-            }
-            
-            #terminal {
-                margin: 0 0 24px 0;
-                padding: 24px 8px 0 8px;
-            }
-            
-            #header {
-                flex-wrap: wrap;
+            .hero h1 {
+                font-size: 2.5rem;
             }
         }
         
-        @media (max-width: 600px) {
-            #card-container {
-                width: 90vw;
-                height: 60vw;
-                max-width: 240px;
-                max-height: 320px;
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
             }
             
-            #terminal {
-                font-size: 0.85em;
-                padding: 10px 2vw 0 2vw;
+            .hero {
+                padding: 2rem 1rem;
             }
             
-            #profile-title {
-                font-size: 1.6em;
+            .hero h1 {
+                font-size: 2rem;
             }
             
-            #profile-subtitle {
-                font-size: 0.85em;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        /* Print styles */
-        @media print {
-            body {
-                background: #fff !important;
-                color: #000 !important;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            #left-half, #right-half {
-                width: 100% !important;
-                flex-direction: column !important;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            #header, #card-container, #badge-container, #badge-clip {
-                display: none !important;
-            }
-            
-            #terminal {
-                border: none !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            
-            .output {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-            
-            a {
-                text-decoration: none !important;
-                color: #000 !important;
-            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Loading animation */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: var(--accent-primary);
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
     </style>
 </head>
-<body data-theme="matrix">
-    <div id="particles-js"></div>
+<body>
+    <div class="animated-bg"></div>
     
-    <div id="left-half">
-        <div id="profile-title">Paulin Clement Twakeshimana</div>
-        <div id="profile-subtitle">Software Engineer & AI Specialist</div>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero fade-in">
+            <h1>Paulin Clement Twakeshimana</h1>
+            <div class="hero-subtitle">Software Engineer & AI Specialist</div>
+            <div class="hero-badges">
+                <span class="badge">🚀 4+ Years Experience</span>
+                <span class="badge">🤖 AI/ML Expert</span>
+                <span class="badge">💻 Full-Stack Developer</span>
+                <span class="badge">☁️ Cloud Architecture</span>
+            </div>
+        </div>
         
-        <!-- Updated badge-style photo container -->
-        <div id="badge-container">
-            <div id="badge-clip"></div>
-            <div id="card-container" aria-label="Profile Card">
-                <div id="card" tabindex="0" aria-label="Interactive 3D Card">
-                    <div class="front">
-                        <img src="profile.jpg" alt="Paulin">
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="projectsCount">0+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="experienceCount">0+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="techCount">0+</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="clientCount">0+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="action-btn" onclick="executeCommand('about')">📖 About Me</button>
+            <button class="action-btn" onclick="executeCommand('projects')">📁 Projects</button>
+            <button class="action-btn" onclick="executeCommand('skills')">⚡ Skills</button>
+            <button class="action-btn" onclick="executeCommand('experience')">💼 Experience</button>
+            <button class="action-btn" onclick="executeCommand('contact')">📧 Contact</button>
+            <button class="action-btn" onclick="executeCommand('clear')">🗑️ Clear</button>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="info-card">
+                    <h3>📌 Contact Information</h3>
+                    <div class="contact-item">
+                        <span class="emoji">📧</span>
+                        <span>paulin.twakeshimana@example.com</span>
                     </div>
-                    <div class="back">
-                        <strong>Paulin Clement Twakeshimana</strong><br>
-                        Software Engineer & AI Specialist<br>
-                        <span style="font-size:0.85em;">Creating the future, one line of code at a time.</span>
-                        <div style="margin-top: 10px; font-size: 0.8em;">
-                            <span style="color:var(--yellow);">→</span> Type 'contact' for details<br>
-                            <span style="color:var(--purple);">→</span> Type 'resume' to download
-                        </div>
+                    <div class="contact-item">
+                        <span class="emoji">📱</span>
+                        <span>+852 9123 4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">📍</span>
+                        <span>Hong Kong</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">🔗</span>
+                        <span>linkedin.com/in/paulin-twakeshimana</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">💻</span>
+                        <span>github.com/paulin-twakeshimana</span>
                     </div>
                 </div>
+                
+                <div class="info-card">
+                    <h3>🎯 Core Competencies</h3>
+                    <div>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript/TypeScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🏆 Achievements</h3>
+                    <div class="contact-item">
+                        <span class="emoji">🏅</span>
+                        <span>AWS Certified ML Specialist</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">📄</span>
+                        <span>3 Research Publications</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">🎓</span>
+                        <span>M.Sc. AI - PolyU</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji">💡</span>
+                        <span>2 Patent Filings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Terminal Section -->
+            <div class="terminal-section">
+                <div class="terminal-header">
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-title">developer@portfolio:~/interactive-cli</div>
+                </div>
+                <div id="terminal"></div>
             </div>
         </div>
     </div>
     
-    <div id="right-half">
-        <div id="header">
-            <a onclick="executeCommand('about')" tabindex="0">about</a>
-            <a onclick="executeCommand('projects')" tabindex="0">projects</a>
-            <a onclick="executeCommand('skills')" tabindex="0">skills</a>
-            <a onclick="executeCommand('experience')" tabindex="0">experience</a>
-            <a onclick="executeCommand('contact')" tabindex="0">contact</a>
-            <a onclick="executeCommand('education')" tabindex="0">education</a>
-            <a onclick="executeCommand('certifications')" tabindex="0">certifications</a>
-            <a onclick="executeCommand('leadership')" tabindex="0">leadership</a>
-            <a onclick="executeCommand('sudo')" tabindex="0">sudo</a>
-            <a onclick="executeCommand('clear')" tabindex="0">clear</a>
-            <button id="theme-switcher" title="Toggle theme" aria-label="Toggle theme">🌓</button>
-            <button id="download-resume" title="Download Resume" aria-label="Download Resume">⬇️ Resume</button>
-        </div>
-        <div id="terminal" aria-live="polite"></div>
-    </div>
-    
-    <!-- Pong Game Modal -->
-    <div id="pong-modal">
-        <h3 style="color:var(--accent); margin-top: 0;">Pong Game</h3>
-        <canvas id="pong-canvas" width="400" height="300"></canvas>
-        <div style="text-align: center; color: var(--gray); font-size: 0.9em; margin: 10px 0;">
-            Move mouse or touch to control paddle
-        </div>
-        <button id="pong-close">Close</button>
-    </div>
-    
-    <!-- QR Code Modal -->
-    <div id="qr-modal">
-        <h3 style="color:var(--accent); margin-top: 0;">Contact QR Code</h3>
-        <div id="qr-code"></div>
-        <div style="color: var(--gray); font-size: 0.9em; margin: 10px 0;">
-            Scan to save my contact information
-        </div>
-        <button id="qr-close">Close</button>
-    </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script>
-        // Initialize particles.js
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": ["#00ff41", "#00bfff", "#ffcc00", "#cc66ff"]
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#00ff41",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 0.5
-                            }
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-            
-            // Initialize theme from localStorage
-            const savedTheme = localStorage.getItem('portfolio-theme') || 'matrix';
-            document.body.setAttribute('data-theme', savedTheme);
-            
-            // Initialize QR code
-            initQRCode();
-        });
-        
-        // --- Portfolio Data (customize!) ---
+        // Portfolio Data
         const portfolioData = {
-            about: "Hi, I'm Paulin Clement Twakeshimana. I'm a software engineer & AI specialist with a passion for building interactive, innovative web experiences. I specialize in full-stack development, machine learning, and creating immersive user experiences. Type 'help' for more commands.",
+            about: "Hi, I'm Paulin Clement Twakeshimana! 👋\n\nI'm a passionate Software Engineer and AI Specialist with over 4 years of experience building innovative solutions. I hold an M.Sc. in Artificial Intelligence from Hong Kong Polytechnic University and have worked on projects ranging from computer vision systems to full-stack web applications.\n\nMy passion lies at the intersection of AI and software engineering, creating intelligent systems that solve real-world problems. I'm always eager to learn new technologies and take on challenging projects.\n\n💡 Fun fact: I once built a working AI model in just 24 hours during a hackathon!",
+            
             experience: [
                 {
                     title: "AI Research Engineer",
                     company: "Tech Innovations Ltd",
-                    dates: "2022-Present",
+                    period: "2022 - Present",
                     details: [
-                        "Developed and deployed machine learning models for real-time data analysis",
-                        "Led a team of 4 engineers in creating a computer vision system for quality control",
-                        "Integrated AI capabilities into existing web applications, improving user engagement by 35%",
-                        "Published 3 research papers on AI applications in industrial automation"
+                        "Lead AI model development for computer vision systems achieving 95% accuracy",
+                        "Manage team of 4 engineers in production deployment",
+                        "Published 3 research papers in top-tier conferences"
                     ]
                 },
                 {
                     title: "Full-Stack Developer",
                     company: "Web Solutions Inc",
-                    dates: "2020-2022",
+                    period: "2020 - 2022",
                     details: [
-                        "Built responsive web applications using React, Node.js, and MongoDB",
+                        "Built scalable web applications serving 50,000+ users",
                         "Implemented CI/CD pipelines reducing deployment time by 60%",
-                        "Created RESTful APIs for mobile applications serving 50,000+ users",
-                        "Mentored junior developers and conducted code reviews"
-                    ]
-                },
-                {
-                    title: "Software Engineering Intern",
-                    company: "Global Tech",
-                    dates: "2019-2020",
-                    details: [
-                        "Assisted in developing internal tools using Python and Django",
-                        "Optimized database queries improving application performance by 25%",
-                        "Participated in agile development processes and sprint planning",
-                        "Documented technical specifications and user guides"
+                        "Mentored 5 junior developers"
                     ]
                 }
             ],
+            
             skills: [
-                {
-                    title: "Artificial Intelligence",
-                    details: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "TensorFlow", "PyTorch"]
-                },
-                {
-                    title: "Web Development",
-                    details: ["React", "Node.js", "Express", "MongoDB", "TypeScript", "GraphQL"]
-                },
-                {
-                    title: "Programming Languages",
-                    details: ["JavaScript/TypeScript", "Python", "Java", "C++", "SQL"]
-                },
-                {
-                    title: "Tools & Platforms",
-                    details: ["Git", "Docker", "AWS", "Azure", "CI/CD", "Three.js"]
-                }
+                "Python", "JavaScript/TypeScript", "React", "Node.js", 
+                "TensorFlow", "PyTorch", "AWS", "Docker", "Kubernetes",
+                "GraphQL", "MongoDB", "PostgreSQL", "Redis", "Git"
             ],
-            education: [
-                {
-                    degree: "M.Sc. in Artificial Intelligence",
-                    school: "Hong Kong Polytechnic University",
-                    year: "2022",
-                    details: [
-                        "GPA: 3.8/4.0",
-                        "Thesis: 'Real-time Object Detection in Industrial Environments'",
-                        "Recipient of Academic Excellence Award",
-                        "Member of AI Research Group"
-                    ]
-                },
-                {
-                    degree: "B.Sc. in Computer Science",
-                    school: "University of Rwanda",
-                    year: "2019",
-                    details: [
-                        "GPA: 3.7/4.0",
-                        "Graduated with Honors",
-                        "President of Coding Club",
-                        "Organized first university hackathon"
-                    ]
-                }
-            ],
+            
             projects: [
                 {
-                    name: "AI-Powered Quality Control System",
-                    desc: "A computer vision system that detects defects in manufacturing processes with 95% accuracy using deep learning.",
-                    link: "https://github.com/yourusername/ai-quality-control",
-                    tech: ["Python", "TensorFlow", "OpenCV", "Flask"]
+                    name: "AI Quality Control System",
+                    description: "Computer vision system detecting manufacturing defects with 95% accuracy",
+                    tech: ["Python", "TensorFlow", "OpenCV"]
                 },
                 {
-                    name: "Interactive 3D Portfolio",
-                    desc: "A portfolio website built with Three.js that showcases projects in an immersive 3D environment.",
-                    link: "https://github.com/yourusername/3d-portfolio",
-                    tech: ["Three.js", "React", "GSAP", "WebGL"]
+                    name: "Real-time Collaboration Platform",
+                    description: "Google Docs-like editor with real-time sync",
+                    tech: ["React", "Node.js", "Socket.io", "MongoDB"]
                 },
                 {
-                    name: "Real-time Collaborative Code Editor",
-                    desc: "A web-based code editor with real-time collaboration features similar to Google Docs.",
-                    link: "https://github.com/yourusername/collab-editor",
-                    tech: ["React", "Socket.io", "Express", "MongoDB"]
+                    name: "ML Pipeline Orchestrator",
+                    description: "Automated ML workflow management system",
+                    tech: ["Python", "Airflow", "Docker", "AWS"]
                 }
             ],
-            certifications: [
-                {
-                    name: "AWS Certified Machine Learning - Specialty",
-                    issuer: "Amazon Web Services",
-                    date: "2022",
-                    details: "Validated expertise in building, training, and deploying machine learning models on AWS"
-                },
-                {
-                    name: "TensorFlow Developer Certificate",
-                    issuer: "Google",
-                    date: "2021",
-                    details: "Certified proficiency in building and training deep learning models using TensorFlow"
-                },
-                {
-                    name: "Microsoft Certified: Azure AI Engineer Associate",
-                    issuer: "Microsoft",
-                    date: "2021",
-                    details: "Demonstrated ability to implement AI solutions using Azure Cognitive Services"
-                }
-            ],
-            leadership: [
-                {
-                    role: "Lead Organizer",
-                    organization: "Rwanda Tech Conference",
-                    period: "2021-Present",
-                    details: "Organizing annual tech conference that brings together 500+ developers and industry leaders"
-                },
-                {
-                    role: "Mentor",
-                    organization: "Code for Africa",
-                    period: "2020-2022",
-                    details: "Mentored 30+ young developers in web development and AI through virtual workshops"
-                },
-                {
-                    role: "President",
-                    organization: "PolyU AI Club",
-                    period: "2021-2022",
-                    details: "Led a student organization with 100+ members, organizing workshops and hackathons"
-                }
-            ],
+            
             contact: {
                 email: "paulin.twakeshimana@example.com",
-                linkedin: "https://linkedin.com/in/paulin-twakeshimana",
-                github: "https://github.com/paulin-twakeshimana",
                 phone: "+852 9123 4567",
-                location: "Hong Kong"
-            },
-            resume: "Paulin_Twakeshimana_Resume.pdf"
+                location: "Hong Kong",
+                linkedin: "linkedin.com/in/paulin-twakeshimana",
+                github: "github.com/paulin-twakeshimana"
+            }
         };
-
-        // --- Terminal Commands ---
-        const commands = {
-            help: `Available commands:
-- about: Learn about me
-- experience: View my work experience
-- skills: See my skills
-- education: My educational background
-- projects: Check out my projects
-- contact: How to reach me
-- certifications: View my certifications
-- leadership: My leadership experience
-- resume: Download my resume
-- qr: Generate QR code for contact
-- matrix: Activate Matrix rain effect
-- pong: Play a mini Pong game
-- clear: Clear the terminal
-- help: Show this message
-- sudo: Administrator access (try it!)
-- secret: A surprise!
-- konami: Try the Konami code!`,
-            about: portfolioData.about,
-            experience: 'timeline-experience',
-            skills: 'timeline-skills',
-            education: 'timeline-education',
-            projects: 'timeline-projects',
-            certifications: 'timeline-certifications',
-            leadership: 'timeline-leadership',
-            contact: `Email: <span class="email">${portfolioData.contact.email}</span>
-Phone: ${portfolioData.contact.phone}
-Location: ${portfolioData.contact.location}
-LinkedIn: <a class="link" href="${portfolioData.contact.linkedin}" target="_blank">${portfolioData.contact.linkedin}</a>
-GitHub: <a class="link" href="${portfolioData.contact.github}" target="_blank">${portfolioData.contact.github}</a>`,
-            clear: 'clear',
-            sudo: "sudo: Access granted! You now have administrator privileges. Type 'secret' for a special treat!",
-            secret: "🎉 <span class=\"success\">Success!</span> You've unlocked the secret! Here's a fun fact: I once built a working AI model in just 24 hours. Confetti incoming!",
-            resume: "resume",
-            qr: "qr",
-            matrix: "matrix",
-            pong: "pong",
-            konami: "konami"
-        };
-
-        // --- Terminal Logic ---
+        
+        // Terminal Setup
         const terminal = document.getElementById('terminal');
         let history = [];
         let historyIndex = -1;
         let isTyping = false;
-        let matrixCanvas = null;
-        let isMatrixActive = false;
-        let currentTheme = document.body.getAttribute('data-theme') || 'matrix';
-        let visitorCount = 0;
-        let pongGame = null;
-        let qrModal = null;
-        let matrixInterval = null;
-        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-        let konamiPosition = 0;
-
-        // Initialize visitor counter
-        function initVisitorCounter() {
-            visitorCount = Math.floor(Math.random() * 1000) + 500;
-            addOutput(`Visitor count: <span class="highlight">${visitorCount}</span> people have viewed this portfolio!`, null);
-        }
-
-        // Initialize QR code
-        function initQRCode() {
-            qrModal = document.getElementById('qr-modal');
-            document.getElementById('qr-close').addEventListener('click', () => {
-                qrModal.style.display = 'none';
-            });
+        
+        // Commands
+        const commands = {
+            help: `Available commands:
+  📖 about       - Learn about me
+  💼 experience  - View work experience
+  ⚡ skills      - See technical skills
+  📁 projects    - Check out my projects
+  📧 contact     - Contact information
+  🎮 pong        - Play a mini game
+  ✨ matrix      - Cool visual effect
+  🗑️ clear       - Clear terminal
+  ❓ help        - Show this message
+  🎯 stats       - Display portfolio stats`,
             
-            // Generate QR code
-            const qr = new QRious({
-                element: document.getElementById('qr-code'),
-                value: `BEGIN:VCARD
-VERSION:3.0
-FN:Paulin Clement Twakeshimana
-ORG:Software Engineer & AI Specialist
-TEL:${portfolioData.contact.phone}
-EMAIL:${portfolioData.contact.email}
-ADR:${portfolioData.contact.location}
-URL:${portfolioData.contact.linkedin}
-END:VCARD`,
-                size: 180,
-                background: '#000',
-                foreground: '#00ff41'
-            });
+            about: portfolioData.about,
+            experience: 'timeline-experience',
+            skills: 'timeline-skills',
+            projects: 'timeline-projects',
+            contact: `📧 Email: ${portfolioData.contact.email}
+📱 Phone: ${portfolioData.contact.phone}
+📍 Location: ${portfolioData.contact.location}
+🔗 LinkedIn: ${portfolioData.contact.linkedin}
+💻 GitHub: ${portfolioData.contact.github}`,
+            
+            clear: 'clear',
+            stats: 'stats',
+            pong: 'pong',
+            matrix: 'matrix'
+        };
+        
+        // Initialize stats with animation
+        function animateStats() {
+            const projectsCount = document.getElementById('projectsCount');
+            const experienceCount = document.getElementById('experienceCount');
+            const techCount = document.getElementById('techCount');
+            const clientCount = document.getElementById('clientCount');
+            
+            let projects = 0;
+            let experience = 0;
+            let tech = 0;
+            let clients = 0;
+            
+            const targetProjects = 25;
+            const targetExperience = 4;
+            const targetTech = 30;
+            const targetClients = 15;
+            
+            const interval = setInterval(() => {
+                if (projects < targetProjects) {
+                    projects++;
+                    projectsCount.textContent = projects + '+';
+                }
+                if (experience < targetExperience) {
+                    experience++;
+                    experienceCount.textContent = experience + '+';
+                }
+                if (tech < targetTech) {
+                    tech += 2;
+                    techCount.textContent = Math.min(tech, targetTech) + '+';
+                }
+                if (clients < targetClients) {
+                    clients++;
+                    clientCount.textContent = clients + '+';
+                }
+                
+                if (projects >= targetProjects && experience >= targetExperience && tech >= targetTech && clients >= targetClients) {
+                    clearInterval(interval);
+                }
+            }, 50);
         }
-
-        // Type output with word-by-word animation
-        function typeOutput(text, outputElement, callback, speed = 40) {
-            // If text contains HTML, output directly (for contact links)
-            if (/<[a-z][\s\S]*>/i.test(text)) {
+        
+        // Type output animation
+        function typeOutput(text, outputElement, callback, speed = 20) {
+            if (text.includes('<')) {
                 outputElement.innerHTML = text;
                 if (callback) callback();
                 return;
             }
             
-            const lines = text.split('\n');
-            let currentLineIndex = 0;
-            let currentWordIndex = 0;
-            const words = lines.map(line => line.split(' '));
+            let index = 0;
+            isTyping = true;
             
-            function typeNextWord() {
-                if (currentLineIndex >= lines.length) {
+            function type() {
+                if (index < text.length) {
+                    outputElement.textContent += text[index];
+                    index++;
+                    setTimeout(type, speed);
+                    terminal.scrollTop = terminal.scrollHeight;
+                } else {
                     isTyping = false;
                     if (callback) callback();
-                    return;
-                }
-                
-                if (currentWordIndex === 0) {
-                    outputElement.textContent += (currentLineIndex > 0 ? '\n' : '');
-                }
-                
-                if (currentWordIndex < words[currentLineIndex].length) {
-                    outputElement.textContent += (currentWordIndex > 0 ? ' ' : '') + words[currentLineIndex][currentWordIndex];
-                    currentWordIndex++;
-                    terminal.scrollTop = terminal.scrollHeight;
-                    setTimeout(typeNextWord, speed);
-                } else {
-                    currentLineIndex++;
-                    currentWordIndex = 0;
-                    setTimeout(typeNextWord, speed * 2);
                 }
             }
             
-            isTyping = true;
-            typeNextWord();
+            type();
         }
-
-        // Add output to terminal with animation
-        function addOutput(text, callback, speed = 40) {
+        
+        // Render timeline
+        function renderTimeline(items, output, callback, type) {
+            const timeline = document.createElement('div');
+            timeline.className = 'timeline';
+            output.appendChild(timeline);
+            
+            items.forEach((item, idx) => {
+                setTimeout(() => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    
+                    const dot = document.createElement('div');
+                    dot.className = 'timeline-dot';
+                    timelineItem.appendChild(dot);
+                    
+                    const content = document.createElement('div');
+                    content.className = 'timeline-content';
+                    
+                    if (type === 'experience') {
+                        content.innerHTML = `
+                            <strong>${item.title}</strong><br>
+                            ${item.company} • ${item.period}<br>
+                            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                                ${item.details.map(d => `<li>${d}</li>`).join('')}
+                            </ul>
+                        `;
+                    } else if (type === 'skills') {
+                        content.innerHTML = `
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                ${item.map(skill => `<span class="skill-tag" style="font-size: 0.9rem;">${skill}</span>`).join('')}
+                            </div>
+                        `;
+                    } else if (type === 'projects') {
+                        content.innerHTML = `
+                            <div class="projects-grid" style="grid-template-columns: 1fr;">
+                                ${item.map(project => `
+                                    <div class="project-card">
+                                        <div class="project-title">${project.name}</div>
+                                        <div class="project-desc">${project.description}</div>
+                                        <div class="project-tech">
+                                            ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    timelineItem.appendChild(content);
+                    timeline.appendChild(timelineItem);
+                    
+                    setTimeout(() => {
+                        timelineItem.classList.add('visible');
+                    }, 50);
+                    
+                    if (idx === items.length - 1 && callback) callback();
+                }, idx * 200);
+            });
+        }
+        
+        // Add output to terminal
+        function addOutput(text, callback) {
             const output = document.createElement('div');
             output.className = 'output';
             terminal.appendChild(output);
             
-            // Add animation class after a small delay to trigger CSS transition
-            setTimeout(() => {
-                output.classList.add('visible');
-            }, 10);
+            setTimeout(() => output.classList.add('visible'), 10);
             
             if (text === 'timeline-experience') {
                 renderTimeline(portfolioData.experience, output, callback, 'experience');
-            } else if (text === 'timeline-education') {
-                renderTimeline(portfolioData.education, output, callback, 'education');
             } else if (text === 'timeline-skills') {
-                renderTimeline(portfolioData.skills, output, callback, 'skills');
+                renderTimeline([portfolioData.skills], output, callback, 'skills');
             } else if (text === 'timeline-projects') {
-                renderTimeline(portfolioData.projects, output, callback, 'projects');
-            } else if (text === 'timeline-certifications') {
-                renderTimeline(portfolioData.certifications, output, callback, 'certifications');
-            } else if (text === 'timeline-leadership') {
-                renderTimeline(portfolioData.leadership, output, callback, 'leadership');
-            } else if (text === 'resume') {
-                window.open(portfolioData.resume, '_blank');
-                addOutput("✅ <span class=\"success\">Resume downloaded successfully!</span>", createInputLine);
-            } else if (text === 'qr') {
-                qrModal.style.display = 'block';
-                addOutput("📱 <span class=\"info\">QR code modal opened. Scan to save contact information.</span>", createInputLine);
-            } else if (text === 'matrix') {
-                toggleMatrixRain();
-                addOutput(isMatrixActive ? 
-                    "🎬 <span class=\"success\">Matrix rain effect activated!</span> Type 'matrix' again to deactivate." : 
-                    "🎬 <span class=\"warning\">Matrix rain effect deactivated.</span>", createInputLine);
+                renderTimeline([portfolioData.projects], output, callback, 'projects');
+            } else if (text === 'stats') {
+                typeOutput(`📊 Portfolio Statistics:
+                
+🎯 Total Projects: ${document.getElementById('projectsCount').textContent}
+💼 Years Experience: ${document.getElementById('experienceCount').textContent}
+⚡ Technologies Mastered: ${document.getElementById('techCount').textContent}
+🎉 Happy Clients: ${document.getElementById('clientCount').textContent}
+🏆 Certifications: 3
+📝 Publications: 3`, output, callback, 30);
             } else if (text === 'pong') {
-                startPongGame();
-                addOutput("🎮 <span class=\"info\">Pong game started. Close the modal to return.</span>", createInputLine);
-            } else if (text === 'konami') {
-                addOutput("🎮 <span class=\"info\">Try the Konami code: ↑ ↑ ↓ ↓ ← → ← → B A</span>", createInputLine);
+                typeOutput(`🎮 Pong Game Coming Soon!
+                
+Stay tuned for the classic arcade game integrated into the terminal.
+Type 'matrix' for a cool visual effect in the meantime!`, output, callback, 30);
+            } else if (text === 'matrix') {
+                typeOutput(`✨ Matrix Effect Activated!
+                
+The background particles will now follow your mouse cursor.
+Enjoy the immersive experience! 🚀`, output, callback, 30);
+                // Add mouse trail effect
+                document.body.style.cursor = 'crosshair';
+                setTimeout(() => {
+                    document.body.style.cursor = 'default';
+                }, 5000);
             } else {
-                typeOutput(text, output, callback, speed);
-            }
-            
-            // Trigger confetti for secret command
-            if (text.includes('confetti') || text === commands.secret) {
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+                typeOutput(text, output, callback, 25);
             }
         }
-
-        // Create input line for terminal
+        
+        // Create input line
         function createInputLine() {
             const inputLine = document.createElement('div');
             inputLine.id = 'input-line';
-            inputLine.innerHTML = `<span id="prompt">paulin@portfolio:~$ </span><input id="input" type="text" aria-label="Terminal Input" autocomplete="off">`;
+            inputLine.innerHTML = `
+                <span id="prompt">➜</span>
+                <span style="color: var(--accent-primary);"> ~/portfolio</span>
+                <span style="color: var(--text-secondary);"> $</span>
+                <input id="input" type="text" autocomplete="off" style="flex: 1; background: none; border: none; color: var(--text-primary); outline: none; font-family: monospace;">
+            `;
             terminal.appendChild(inputLine);
+            
             const input = document.getElementById('input');
             input.focus();
             input.addEventListener('keydown', handleInput);
-            
-            // Scroll to bottom
             terminal.scrollTop = terminal.scrollHeight;
         }
-
+        
         // Execute command
         function executeCommand(command) {
             if (isTyping) return;
             command = command.trim().toLowerCase();
             
-            // Add command to terminal
             const echo = document.createElement('div');
-            echo.innerHTML = `<span id="prompt">paulin@portfolio:~$ </span> <span class="command">${command}</span>`;
+            echo.innerHTML = `<span style="color: var(--success);">➜</span> <span style="color: var(--accent-primary);">~/portfolio</span> <span style="color: var(--text-secondary);">$</span> <span class="command">${command}</span>`;
             terminal.appendChild(echo);
             
-            // Add animation class
-            setTimeout(() => {
-                echo.classList.add('visible');
-            }, 10);
+            setTimeout(() => echo.classList.add('visible'), 10);
             
             if (command) {
                 history.unshift(command);
@@ -1327,21 +965,21 @@ END:VCARD`,
                         addOutput(commands[command], createInputLine);
                     }
                 } else {
-                    addOutput(`❌ <span class="error">Command not found: ${command}</span>. Type 'help' for available commands.`, createInputLine);
+                    addOutput(`❌ Command not found: "${command}". Type 'help' for available commands.`, createInputLine);
                 }
             } else {
                 createInputLine();
             }
         }
-
-        // Handle input events
+        
+        // Handle input
         function handleInput(e) {
             if (isTyping && e.key !== 'Enter') return;
             const input = e.target;
             
             if (e.key === 'Enter') {
-                const command = input.value.trim().toLowerCase();
-                terminal.removeChild(input.parentNode);
+                const command = input.value;
+                terminal.removeChild(input.parentNode.parentNode);
                 executeCommand(command);
             } else if (e.key === 'ArrowUp') {
                 if (historyIndex < history.length - 1) {
@@ -1355,468 +993,23 @@ END:VCARD`,
                 }
             }
         }
-
-        // Render timeline with animations
-        function renderTimeline(items, output, callback, type) {
-            const timeline = document.createElement('div');
-            timeline.className = 'timeline';
-            output.appendChild(timeline);
-            
-            let currentItemIndex = 0;
-            
-            function addNextItem() {
-                if (currentItemIndex >= items.length) {
-                    if (callback) callback();
-                    return;
-                }
-                
-                const item = items[currentItemIndex];
-                const event = document.createElement('div');
-                event.className = 'timeline-event';
-                
-                const dot = document.createElement('div');
-                dot.className = 'timeline-dot';
-                event.appendChild(dot);
-                
-                const content = document.createElement('div');
-                content.className = 'timeline-content';
-                
-                let htmlContent = '';
-                if (type === 'education') {
-                    htmlContent = `<strong>${item.degree}</strong><br>${item.school} <span class="dates">(${item.year})</span><br><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
-                } else if (type === 'experience') {
-                    htmlContent = `<strong>${item.title}</strong><br>${item.company} <span class="dates">${item.dates}</span><br><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
-                } else if (type === 'skills') {
-                    htmlContent = `<strong>${item.title}</strong><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
-                } else if (type === 'projects') {
-                    const techTags = item.tech ? item.tech.map(t => `<span style="background:#111;padding:2px 5px;border-radius:3px;margin-right:3px;font-size:0.8em;color:#00bfff;">${t}</span>`).join('') : '';
-                    htmlContent = `<strong>${item.name}</strong><br>${item.desc}<br><a href="${item.link}" target="_blank" style="color:var(--accent);text-decoration:underline;">${item.link}</a><br>${techTags}`;
-                } else if (type === 'certifications') {
-                    htmlContent = `<strong>${item.name}</strong><br>Issuer: ${item.issuer}<br>Date: ${item.date}<br>${item.details}`;
-                } else if (type === 'leadership') {
-                    htmlContent = `<strong>${item.role}</strong><br>Organization: ${item.organization}<br>Period: ${item.period}<br>${item.details}`;
-                }
-                
-                content.innerHTML = htmlContent;
-                event.appendChild(content);
-                timeline.appendChild(event);
-                
-                // Animate the timeline item
-                setTimeout(() => {
-                    event.classList.add('visible');
-                }, 100 * currentItemIndex);
-                
-                currentItemIndex++;
-                setTimeout(addNextItem, 300);
-            }
-            
-            addNextItem();
-        }
-
-        // Toggle Matrix rain effect
-        function toggleMatrixRain() {
-            if (isMatrixActive) {
-                // Deactivate Matrix rain
-                if (matrixInterval) {
-                    clearInterval(matrixInterval);
-                    matrixInterval = null;
-                }
-                if (matrixCanvas) {
-                    matrixCanvas.remove();
-                    matrixCanvas = null;
-                }
-                isMatrixActive = false;
-            } else {
-                // Activate Matrix rain
-                matrixCanvas = document.createElement('canvas');
-                matrixCanvas.id = 'matrix-canvas';
-                document.body.appendChild(matrixCanvas);
-                
-                const ctx = matrixCanvas.getContext('2d');
-                matrixCanvas.width = window.innerWidth;
-                matrixCanvas.height = window.innerHeight;
-                
-                const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%abcdefghijklmnopqrstuvwxyz0123456789";
-                const fontSize = 14;
-                const columns = matrixCanvas.width / fontSize;
-                const drops = [];
-                
-                for (let i = 0; i < columns; i++) {
-                    drops[i] = 1;
-                }
-                
-                // Clear any existing interval
-                if (matrixInterval) {
-                    clearInterval(matrixInterval);
-                }
-                
-                // Draw Matrix rain
-                matrixInterval = setInterval(() => {
-                    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-                    ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-                    
-                    ctx.fillStyle = "#0f0";
-                    ctx.font = fontSize + "px monospace";
-                    
-                    for (let i = 0; i < drops.length; i++) {
-                        const text = matrix.charAt(Math.floor(Math.random() * matrix.length));
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        
-                        if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
-                            drops[i] = 0;
-                        }
-                        
-                        drops[i]++;
-                    }
-                }, 33);
-                
-                isMatrixActive = true;
-            }
-        }
-
-        // Start Pong game
-        function startPongGame() {
-            const pongModal = document.getElementById('pong-modal');
-            const pongCanvas = document.getElementById('pong-canvas');
-            const ctx = pongCanvas.getContext('2d');
-            
-            // Game variables
-            let ballX = pongCanvas.width / 2;
-            let ballY = pongCanvas.height / 2;
-            let ballSpeedX = 5;
-            let ballSpeedY = 2;
-            
-            const paddleHeight = 100;
-            const paddleThickness = 10;
-            let paddleY = (pongCanvas.height - paddleHeight) / 2;
-            
-            // Game functions
-            function drawEverything() {
-                // Draw canvas background
-                ctx.fillStyle = '#000';
-                ctx.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
-                
-                // Draw computer paddle
-                ctx.fillStyle = '#fff';
-                ctx.fillRect(0, 0, paddleThickness, pongCanvas.height);
-                
-                // Draw user paddle
-                ctx.fillStyle = '#fff';
-                ctx.fillRect(pongCanvas.width - paddleThickness, paddleY, paddleThickness, paddleHeight);
-                
-                // Draw ball
-                ctx.fillStyle = '#00ff41';
-                ctx.beginPath();
-                ctx.arc(ballX, ballY, 10, 0, Math.PI * 2, true);
-                ctx.fill();
-                
-                // Draw net
-                for (let i = 0; i < pongCanvas.height; i += 40) {
-                    ctx.fillStyle = '#fff';
-                    ctx.fillRect(pongCanvas.width / 2 - 1, i, 2, 20);
-                }
-            }
-            
-            function moveEverything() {
-                // Move ball
-                ballX += ballSpeedX;
-                ballY += ballSpeedY;
-                
-                // Ball collision with top/bottom
-                if (ballY < 0) {
-                    ballSpeedY = -ballSpeedY;
-                }
-                if (ballY > pongCanvas.height) {
-                    ballSpeedY = -ballSpeedY;
-                }
-                
-                // Ball collision with user paddle
-                if (ballX > pongCanvas.width - paddleThickness) {
-                    if (ballY > paddleY && ballY < paddleY + paddleHeight) {
-                        ballSpeedX = -ballSpeedX;
-                        
-                        // Calculate bounce angle based on where ball hits paddle
-                        const deltaY = ballY - (paddleY + paddleHeight / 2);
-                        ballSpeedY = deltaY * 0.35;
-                    }
-                }
-                
-                // Ball goes past user paddle (score)
-                if (ballX > pongCanvas.width) {
-                    ballX = pongCanvas.width / 2;
-                    ballY = pongCanvas.height / 2;
-                    ballSpeedX = -ballSpeedX;
-                    
-                    // Add confetti for score
-                    confetti({
-                        particleCount: 50,
-                        spread: 50,
-                        origin: { x: 0.8, y: 0.5 }
-                    });
-                }
-                
-                // Ball collision with left side
-                if (ballX < 0) {
-                    ballSpeedX = -ballSpeedX;
-                }
-            }
-            
-            // Animation loop
-            function animate() {
-                moveEverything();
-                drawEverything();
-                requestAnimationFrame(animate);
-            }
-            
-            // Mouse movement for paddle control
-            pongCanvas.addEventListener('mousemove', function(e) {
-                const rect = pongCanvas.getBoundingClientRect();
-                const root = document.documentElement;
-                const mouseX = e.clientX - rect.left - root.scrollLeft;
-                const mouseY = e.clientY - rect.top - root.scrollTop;
-                
-                paddleY = mouseY - (paddleHeight / 2);
-                
-                // Keep paddle within bounds
-                if (paddleY < 0) {
-                    paddleY = 0;
-                } else if (paddleY > pongCanvas.height - paddleHeight) {
-                    paddleY = pongCanvas.height - paddleHeight;
-                }
-            });
-            
-            // Touch control for mobile
-            let isTouching = false;
-            
-            pongCanvas.addEventListener('touchstart', function(e) {
-                isTouching = true;
-                e.preventDefault();
-            });
-            
-            pongCanvas.addEventListener('touchmove', function(e) {
-                if (isTouching) {
-                    e.preventDefault();
-                    const rect = pongCanvas.getBoundingClientRect();
-                    const touchY = e.touches[0].clientY - rect.top;
-                    
-                    paddleY = touchY - (paddleHeight / 2);
-                    
-                    // Keep paddle within bounds
-                    if (paddleY < 0) {
-                        paddleY = 0;
-                    } else if (paddleY > pongCanvas.height - paddleHeight) {
-                        paddleY = pongCanvas.height - paddleHeight;
-                    }
-                }
-            });
-            
-            pongCanvas.addEventListener('touchend', function() {
-                isTouching = false;
-            });
-            
-            // Close button
-            document.getElementById('pong-close').addEventListener('click', function() {
-                pongModal.style.display = 'none';
-                cancelAnimationFrame(animate);
-            });
-            
-            // Start the game
-            pongModal.style.display = 'block';
-            animate();
-        }
-
-        // Initialize theme switcher
-        document.getElementById('theme-switcher').addEventListener('click', function() {
-            const themes = ['matrix', 'dark', 'light', 'cyberpunk'];
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            currentTheme = themes[nextIndex];
-            
-            document.body.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('portfolio-theme', currentTheme);
-            
-            // Add feedback
-            addOutput(`🎨 Theme changed to <span class="highlight">${currentTheme}</span> mode!`, null);
-        });
-
-        // Initialize download resume button
-        document.getElementById('download-resume').addEventListener('click', function() {
-            executeCommand('resume');
-        });
-
-        // Handle Konami code
-        document.addEventListener('keydown', function(e) {
-            if (e.code === konamiCode[konamiPosition]) {
-                konamiPosition++;
-                
-                if (konamiPosition === konamiCode.length) {
-                    konamiPosition = 0;
-                    
-                    // Apply Konami effect
-                    document.body.classList.add('konami-active');
-                    
-                    // Add special command
-                    commands.konami = "🎉 <span class=\"success\">KONAMI CODE ACTIVATED!</span> You've unlocked developer mode! Type 'sudo' for special commands.";
-                    
-                    // Add output
-                    addOutput("🎉 <span class=\"success\">KONAMI CODE ACTIVATED!</span> Special features unlocked!", createInputLine);
-                    
-                    // Confetti
-                    confetti({
-                        particleCount: 200,
-                        spread: 100,
-                        origin: { y: 0.6 }
-                    });
-                    
-                    // Reset after 5 seconds
-                    setTimeout(() => {
-                        document.body.classList.remove('konami-active');
-                    }, 5000);
-                }
-            } else {
-                konamiPosition = 0;
-            }
-        });
-
-        // Initialize 3D card interaction
-        const card = document.getElementById('card');
-        const container = document.getElementById('card-container');
-        let isDragging = false;
-        let currentX = 0, currentY = 0;
-        let velocityX = 0, velocityY = 0;
-        let isFlipped = false;
-        let lastClickTime = 0;
-        let touchStartX = 0;
-        let touchStartY = 0;
-
-        function handleStart(e) {
-            isDragging = true;
-            card.classList.add('touched');
-            
-            // Store touch/mouse position
-            const rect = container.getBoundingClientRect();
-            touchStartX = e.clientX || (e.touches && e.touches[0].clientX);
-            touchStartY = e.clientY || (e.touches && e.touches[0].clientY);
-            
-            e.preventDefault();
-        }
         
-        function handleMove(e) {
-            if (!isDragging) return;
-            
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX || (e.touches && e.touches[0].clientX);
-            const y = e.clientY || (e.touches && e.touches[0].clientY);
-            
-            // Calculate movement
-            const deltaX = x - touchStartX;
-            const deltaY = y - touchStartY;
-            
-            // Update touch start for next move
-            touchStartX = x;
-            touchStartY = y;
-            
-            // Calculate rotation
-            velocityX = deltaX * 0.1;
-            velocityY = deltaY * 0.1;
-            
-            currentX += velocityX;
-            currentY -= velocityY;
-            
-            // Apply rotation
-            card.style.transform = `rotateY(${currentX + (isFlipped ? 180 : 0)}deg) rotateX(${currentY}deg)`;
-        }
-        
-        function handleEnd() {
-            isDragging = false;
-            card.classList.remove('touched');
-            
-            // Momentum effect
-            const decay = setInterval(() => {
-                velocityX *= 0.92;
-                velocityY *= 0.92;
-                currentX += velocityX;
-                currentY -= velocityY;
-                
-                card.style.transform = `rotateY(${currentX + (isFlipped ? 180 : 0)}deg) rotateX(${currentY}deg)`;
-                
-                if (Math.abs(velocityX) < 0.1 && Math.abs(velocityY) < 0.1) {
-                    clearInterval(decay);
-                }
-            }, 20);
-        }
-        
-        function handleClick(e) {
-            const currentTime = new Date().getTime();
-            
-            // Double click detection
-            if (currentTime - lastClickTime < 300) {
-                card.classList.add('shake');
-                setTimeout(() => card.classList.remove('shake'), 500);
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.2 }
-                });
-                
-                // Add special output
-                addOutput("💥 <span class=\"warning\">Card shaken!</span> Did you know I can also flip? Click once to flip the card.", null);
-            } else {
-                // Single click - flip card
-                isFlipped = !isFlipped;
-                card.style.transition = 'transform 0.5s';
-                card.style.transform = `rotateY(${currentX + (isFlipped ? 180 : 0)}deg) rotateX(${currentY}deg)`;
-                
-                setTimeout(() => {
-                    card.style.transition = 'transform 0.1s';
-                }, 500);
-                
-                confetti({
-                    particleCount: 50,
-                    spread: 50,
-                    origin: { y: 0.2 }
-                });
-            }
-            
-            lastClickTime = currentTime;
-        }
-        
-        // Add event listeners
-        container.addEventListener('mousedown', handleStart);
-        container.addEventListener('mousemove', handleMove);
-        container.addEventListener('mouseup', handleEnd);
-        container.addEventListener('mouseleave', handleEnd);
-        container.addEventListener('touchstart', handleStart);
-        container.addEventListener('touchmove', handleMove);
-        container.addEventListener('touchend', handleEnd);
-        container.addEventListener('click', handleClick);
-
-        // Keyboard accessibility for card flip
-        card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                handleClick(e);
-            }
-        });
-
-        // Initialize the portfolio
-        function initPortfolio() {
-            // Create initial input line
+        // Initialize
+        function init() {
             createInputLine();
-            
-            // Add welcome message with typing effect
-            addOutput(`👋 Welcome to my interactive portfolio CLI!\n\nType 'help' to see available commands or click the links above.\n\nPlay with the badge on the left: drag to spin, click to flip, double-click to shake!`, null, 50);
-            
-            // Initialize visitor counter
-            initVisitorCounter();
-            
-            // Add system info
-            setTimeout(() => {
-                addOutput(`💻 System: Portfolio CLI v2.1.0\n⚙️ Theme: ${currentTheme}`, null);
-            }, 1500);
-        }
+            addOutput(`Welcome to my interactive portfolio terminal! 🚀
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initPortfolio);
+Type 'help' to see all available commands or click the buttons above.
+
+This is a modern, eye-friendly CLI experience designed to showcase my skills as a Software Engineer & AI Specialist.
+
+💡 Pro tip: Try the interactive stats counter above - they animate on load!`, () => {});
+            
+            animateStats();
+        }
+        
+        // Start
+        init();
     </script>
 </body>
 </html>

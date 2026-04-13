@@ -115,6 +115,7 @@
             font-weight: 500;
             color: var(--accent-primary);
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .badge:hover {
@@ -199,6 +200,7 @@
             border-bottom: 1px solid var(--border);
             color: var(--text-secondary);
             transition: color 0.3s;
+            cursor: pointer;
         }
         
         .contact-item:hover {
@@ -219,6 +221,7 @@
             font-size: 0.85rem;
             margin: 0.25rem;
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .skill-tag:hover {
@@ -539,10 +542,10 @@
             <h1>Paulin Clement Twakeshimana</h1>
             <div class="hero-subtitle">Software Engineer & AI Specialist</div>
             <div class="hero-badges">
-                <span class="badge">🚀 4+ Years Experience</span>
-                <span class="badge">🤖 AI/ML Expert</span>
-                <span class="badge">💻 Full-Stack Developer</span>
-                <span class="badge">☁️ Cloud Architecture</span>
+                <span class="badge" onclick="executeCommand('about')">🚀 4+ Years Experience</span>
+                <span class="badge" onclick="executeCommand('skills')">🤖 AI/ML Expert</span>
+                <span class="badge" onclick="executeCommand('projects')">💻 Full-Stack Developer</span>
+                <span class="badge" onclick="executeCommand('experience')">☁️ Cloud Architecture</span>
             </div>
         </div>
         
@@ -573,6 +576,7 @@
             <button class="action-btn" onclick="executeCommand('skills')">⚡ Skills</button>
             <button class="action-btn" onclick="executeCommand('experience')">💼 Experience</button>
             <button class="action-btn" onclick="executeCommand('contact')">📧 Contact</button>
+            <button class="action-btn" onclick="executeCommand('help')">❓ Help</button>
             <button class="action-btn" onclick="executeCommand('clear')">🗑️ Clear</button>
         </div>
         
@@ -582,23 +586,23 @@
             <div class="sidebar">
                 <div class="info-card">
                     <h3>📌 Contact Information</h3>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="executeCommand('contact')">
                         <span class="emoji">📧</span>
                         <span>paulin.twakeshimana@example.com</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="executeCommand('contact')">
                         <span class="emoji">📱</span>
                         <span>+852 9123 4567</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="executeCommand('contact')">
                         <span class="emoji">📍</span>
                         <span>Hong Kong</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="window.open('https://linkedin.com/in/paulin-twakeshimana', '_blank')">
                         <span class="emoji">🔗</span>
                         <span>linkedin.com/in/paulin-twakeshimana</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="window.open('https://github.com/paulin-twakeshimana', '_blank')">
                         <span class="emoji">💻</span>
                         <span>github.com/paulin-twakeshimana</span>
                     </div>
@@ -607,18 +611,18 @@
                 <div class="info-card">
                     <h3>🎯 Core Competencies</h3>
                     <div>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript/TypeScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">GraphQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">Python</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">JavaScript/TypeScript</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">React</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">Node.js</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">TensorFlow</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">PyTorch</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">AWS</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">Docker</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">Kubernetes</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">GraphQL</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">MongoDB</span>
+                        <span class="skill-tag" onclick="executeCommand('skills')">PostgreSQL</span>
                     </div>
                 </div>
                 
@@ -726,18 +730,22 @@
         
         // Commands
         const commands = {
-            help: `Available commands:
-  📖 about       - Learn about me
-  💼 experience  - View work experience
-  ⚡ skills      - See technical skills
-  📁 projects    - Check out my projects
-  📧 contact     - Contact information
-  🎮 pong        - Play a mini game
-  ✨ matrix      - Cool visual effect
-  🗑️ clear       - Clear terminal
-  ❓ help        - Show this message
-  🎯 stats       - Display portfolio stats`,
-            
+            help: function() {
+                return `╔══════════════════════════════════════════════════════════╗
+║                    AVAILABLE COMMANDS                       ║
+╠════════════════════════════════════════════════════════════╣
+║  about       - Learn about me and my background            ║
+║  experience  - View my professional work experience        ║
+║  skills      - See my technical skills and competencies    ║
+║  projects    - Check out my featured projects              ║
+║  contact     - Get my contact information                  ║
+║  stats       - Display portfolio statistics                ║
+║  clear       - Clear the terminal screen                   ║
+║  help        - Show this help message                      ║
+╚════════════════════════════════════════════════════════════╝
+
+💡 Tip: You can also click the buttons above or badges in the sidebar!`;
+            },
             about: portfolioData.about,
             experience: 'timeline-experience',
             skills: 'timeline-skills',
@@ -747,11 +755,8 @@
 📍 Location: ${portfolioData.contact.location}
 🔗 LinkedIn: ${portfolioData.contact.linkedin}
 💻 GitHub: ${portfolioData.contact.github}`,
-            
             clear: 'clear',
-            stats: 'stats',
-            pong: 'pong',
-            matrix: 'matrix'
+            stats: 'stats'
         };
         
         // Initialize stats with animation
@@ -797,14 +802,9 @@
         
         // Type output animation
         function typeOutput(text, outputElement, callback, speed = 20) {
-            if (text.includes('<')) {
-                outputElement.innerHTML = text;
-                if (callback) callback();
-                return;
-            }
-            
             let index = 0;
             isTyping = true;
+            outputElement.textContent = '';
             
             function type() {
                 if (index < text.length) {
@@ -827,58 +827,73 @@
             timeline.className = 'timeline';
             output.appendChild(timeline);
             
-            items.forEach((item, idx) => {
+            if (type === 'skills') {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                const dot = document.createElement('div');
+                dot.className = 'timeline-dot';
+                timelineItem.appendChild(dot);
+                
+                const content = document.createElement('div');
+                content.className = 'timeline-content';
+                content.innerHTML = `
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        ${items.map(skill => `<span class="skill-tag" style="font-size: 0.9rem; cursor: default;">${skill}</span>`).join('')}
+                    </div>
+                `;
+                
+                timelineItem.appendChild(content);
+                timeline.appendChild(timelineItem);
+                
                 setTimeout(() => {
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    
-                    const dot = document.createElement('div');
-                    dot.className = 'timeline-dot';
-                    timelineItem.appendChild(dot);
-                    
-                    const content = document.createElement('div');
-                    content.className = 'timeline-content';
-                    
-                    if (type === 'experience') {
-                        content.innerHTML = `
-                            <strong>${item.title}</strong><br>
-                            ${item.company} • ${item.period}<br>
-                            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
-                                ${item.details.map(d => `<li>${d}</li>`).join('')}
-                            </ul>
-                        `;
-                    } else if (type === 'skills') {
-                        content.innerHTML = `
-                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                ${item.map(skill => `<span class="skill-tag" style="font-size: 0.9rem;">${skill}</span>`).join('')}
-                            </div>
-                        `;
-                    } else if (type === 'projects') {
-                        content.innerHTML = `
-                            <div class="projects-grid" style="grid-template-columns: 1fr;">
-                                ${item.map(project => `
-                                    <div class="project-card">
-                                        <div class="project-title">${project.name}</div>
-                                        <div class="project-desc">${project.description}</div>
-                                        <div class="project-tech">
-                                            ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                    }
-                    
-                    timelineItem.appendChild(content);
-                    timeline.appendChild(timelineItem);
-                    
+                    timelineItem.classList.add('visible');
+                    if (callback) callback();
+                }, 100);
+            } else {
+                items.forEach((item, idx) => {
                     setTimeout(() => {
-                        timelineItem.classList.add('visible');
-                    }, 50);
-                    
-                    if (idx === items.length - 1 && callback) callback();
-                }, idx * 200);
-            });
+                        const timelineItem = document.createElement('div');
+                        timelineItem.className = 'timeline-item';
+                        
+                        const dot = document.createElement('div');
+                        dot.className = 'timeline-dot';
+                        timelineItem.appendChild(dot);
+                        
+                        const content = document.createElement('div');
+                        content.className = 'timeline-content';
+                        
+                        if (type === 'experience') {
+                            content.innerHTML = `
+                                <strong>${item.title}</strong><br>
+                                ${item.company} • ${item.period}<br>
+                                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                                    ${item.details.map(d => `<li>${d}</li>`).join('')}
+                                </ul>
+                            `;
+                        } else if (type === 'projects') {
+                            content.innerHTML = `
+                                <div class="project-card">
+                                    <div class="project-title">${item.name}</div>
+                                    <div class="project-desc">${item.description}</div>
+                                    <div class="project-tech">
+                                        ${item.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        
+                        timelineItem.appendChild(content);
+                        timeline.appendChild(timelineItem);
+                        
+                        setTimeout(() => {
+                            timelineItem.classList.add('visible');
+                        }, 50);
+                        
+                        if (idx === items.length - 1 && callback) callback();
+                    }, idx * 200);
+                });
+            }
         }
         
         // Add output to terminal
@@ -892,33 +907,20 @@
             if (text === 'timeline-experience') {
                 renderTimeline(portfolioData.experience, output, callback, 'experience');
             } else if (text === 'timeline-skills') {
-                renderTimeline([portfolioData.skills], output, callback, 'skills');
+                renderTimeline(portfolioData.skills, output, callback, 'skills');
             } else if (text === 'timeline-projects') {
-                renderTimeline([portfolioData.projects], output, callback, 'projects');
+                renderTimeline(portfolioData.projects, output, callback, 'projects');
             } else if (text === 'stats') {
-                typeOutput(`📊 Portfolio Statistics:
+                const statsText = `📊 Portfolio Statistics:
                 
 🎯 Total Projects: ${document.getElementById('projectsCount').textContent}
 💼 Years Experience: ${document.getElementById('experienceCount').textContent}
 ⚡ Technologies Mastered: ${document.getElementById('techCount').textContent}
 🎉 Happy Clients: ${document.getElementById('clientCount').textContent}
 🏆 Certifications: 3
-📝 Publications: 3`, output, callback, 30);
-            } else if (text === 'pong') {
-                typeOutput(`🎮 Pong Game Coming Soon!
-                
-Stay tuned for the classic arcade game integrated into the terminal.
-Type 'matrix' for a cool visual effect in the meantime!`, output, callback, 30);
-            } else if (text === 'matrix') {
-                typeOutput(`✨ Matrix Effect Activated!
-                
-The background particles will now follow your mouse cursor.
-Enjoy the immersive experience! 🚀`, output, callback, 30);
-                // Add mouse trail effect
-                document.body.style.cursor = 'crosshair';
-                setTimeout(() => {
-                    document.body.style.cursor = 'default';
-                }, 5000);
+📝 Publications: 3
+🚀 Current Status: Available for opportunities`;
+                typeOutput(statsText, output, callback, 30);
             } else {
                 typeOutput(text, output, callback, 25);
             }
@@ -929,7 +931,7 @@ Enjoy the immersive experience! 🚀`, output, callback, 30);
             const inputLine = document.createElement('div');
             inputLine.id = 'input-line';
             inputLine.innerHTML = `
-                <span id="prompt">➜</span>
+                <span id="prompt" style="color: var(--success);">➜</span>
                 <span style="color: var(--accent-primary);"> ~/portfolio</span>
                 <span style="color: var(--text-secondary);"> $</span>
                 <input id="input" type="text" autocomplete="off" style="flex: 1; background: none; border: none; color: var(--text-primary); outline: none; font-family: monospace;">
@@ -962,7 +964,8 @@ Enjoy the immersive experience! 🚀`, output, callback, 30);
                         terminal.innerHTML = '';
                         createInputLine();
                     } else {
-                        addOutput(commands[command], createInputLine);
+                        const result = typeof commands[command] === 'function' ? commands[command]() : commands[command];
+                        addOutput(result, createInputLine);
                     }
                 } else {
                     addOutput(`❌ Command not found: "${command}". Type 'help' for available commands.`, createInputLine);
@@ -979,7 +982,8 @@ Enjoy the immersive experience! 🚀`, output, callback, 30);
             
             if (e.key === 'Enter') {
                 const command = input.value;
-                terminal.removeChild(input.parentNode.parentNode);
+                const inputLine = input.parentNode;
+                terminal.removeChild(inputLine.parentNode);
                 executeCommand(command);
             } else if (e.key === 'ArrowUp') {
                 if (historyIndex < history.length - 1) {
@@ -997,16 +1001,23 @@ Enjoy the immersive experience! 🚀`, output, callback, 30);
         // Initialize
         function init() {
             createInputLine();
-            addOutput(`Welcome to my interactive portfolio terminal! 🚀
-
-Type 'help' to see all available commands or click the buttons above.
-
-This is a modern, eye-friendly CLI experience designed to showcase my skills as a Software Engineer & AI Specialist.
-
-💡 Pro tip: Try the interactive stats counter above - they animate on load!`, () => {});
+            addOutput(`╔══════════════════════════════════════════════════════════╗
+║     Welcome to my interactive portfolio terminal! 🚀     ║
+╠══════════════════════════════════════════════════════════╣
+║  Type 'help' to see all available commands              ║
+║  or click the buttons above to get started.             ║
+║                                                          ║
+║  This modern, eye-friendly CLI experience showcases     ║
+║  my skills as a Software Engineer & AI Specialist.      ║
+║                                                          ║
+║  💡 Pro tip: The stats above animate on load!           ║
+╚══════════════════════════════════════════════════════════╝`, () => {});
             
             animateStats();
         }
+        
+        // Make executeCommand available globally
+        window.executeCommand = executeCommand;
         
         // Start
         init();

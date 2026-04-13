@@ -91,7 +91,7 @@
         /* Matrix theme */
         [data-theme="matrix"] {
             --bg: #000;
-            --fg: #0f0; /* This is the problem - it's green, not white */
+            --fg: #0f0;
             --accent: #0f0;
             --header-bg: #000;
             --border: #0f0;
@@ -364,7 +364,7 @@
             padding: 10px 15px;
             border-radius: 8px;
             border: 1px solid var(--border);
-            color: #fff !important; /* FORCED WHITE - overrides theme colors */
+            color: #fff !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
             font-family: inherit;
             font-size: 0.95em;
@@ -387,12 +387,12 @@
         .timeline-content ul {
             margin: 5px 0 0 15px;
             padding: 0;
-            color: #fff !important; /* FORCED WHITE */
+            color: #fff !important;
         }
         
         .timeline-content li {
             margin-bottom: 3px;
-            color: #fff !important; /* FORCED WHITE */
+            color: #fff !important;
         }
         
         .timeline-content:hover {
@@ -1125,7 +1125,6 @@
 - secret: A surprise!
 - konami: Try the Konami code!`,
             about: portfolioData.about,
-            // CRITICAL CHANGE: Set to 'timeline-experience' instead of string
             experience: 'timeline-experience',
             skills: 'timeline-skills',
             education: 'timeline-education',
@@ -1156,8 +1155,6 @@ GitHub: <a class="link" href="${portfolioData.contact.github}" target="_blank">$
         let isMatrixActive = false;
         let currentTheme = document.body.getAttribute('data-theme') || 'matrix';
         let visitorCount = 0;
-        let speech = new SpeechSynthesisUtterance();
-        let speechEnabled = true;
         let pongGame = null;
         let qrModal = null;
         let matrixInterval = null;
@@ -1166,7 +1163,6 @@ GitHub: <a class="link" href="${portfolioData.contact.github}" target="_blank">$
 
         // Initialize visitor counter
         function initVisitorCounter() {
-            // In a real implementation, this would connect to a backend service
             visitorCount = Math.floor(Math.random() * 1000) + 500;
             addOutput(`Visitor count: <span class="highlight">${visitorCount}</span> people have viewed this portfolio!`, null);
         }
@@ -1280,15 +1276,6 @@ END:VCARD`,
                 typeOutput(text, output, callback, speed);
             }
             
-            // Read output aloud if speech is enabled
-            if (speechEnabled && text !== 'clear' && !text.includes('confetti')) {
-                speech.text = text.replace(/<[^>]+>/g, '').substring(0, 200);
-                speech.lang = 'en-US';
-                speech.volume = 0.8;
-                speech.rate = 0.9;
-                speechSynthesis.speak(speech);
-            }
-            
             // Trigger confetti for secret command
             if (text.includes('confetti') || text === commands.secret) {
                 confetti({
@@ -1398,7 +1385,6 @@ END:VCARD`,
                 if (type === 'education') {
                     htmlContent = `<strong>${item.degree}</strong><br>${item.school} <span class="dates">(${item.year})</span><br><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
                 } else if (type === 'experience') {
-                    // CRITICAL CHANGE: Proper formatting with white text
                     htmlContent = `<strong>${item.title}</strong><br>${item.company} <span class="dates">${item.dates}</span><br><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
                 } else if (type === 'skills') {
                     htmlContent = `<strong>${item.title}</strong><ul>${item.details.map(d => `<li>${d}</li>`).join('')}</ul>`;
@@ -1692,15 +1678,6 @@ END:VCARD`,
             }
         });
 
-        // Initialize speech toggle
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 's' && e.ctrlKey) {
-                speechEnabled = !speechEnabled;
-                addOutput(`🗣️ Speech ${speechEnabled ? '<span class="success">enabled</span>' : '<span class="warning">disabled</span>'}`, null);
-                e.preventDefault();
-            }
-        });
-
         // Initialize 3D card interaction
         const card = document.getElementById('card');
         const container = document.getElementById('card-container');
@@ -1821,80 +1798,20 @@ END:VCARD`,
             }
         });
 
-        // Initialize voice command recognition
-        function initVoiceRecognition() {
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                const recognition = new SpeechRecognition();
-                
-                recognition.continuous = true;
-                recognition.interimResults = true;
-                recognition.lang = 'en-US';
-                
-                recognition.onresult = function(event) {
-                    const transcript = Array.from(event.results)
-                        .map(result => result[0])
-                        .map(result => result.transcript)
-                        .join('');
-                    
-                    // Display interim results
-                    if (event.results[0].isFinal) {
-                        // Process final result
-                        const command = transcript.trim().toLowerCase();
-                        
-                        // Check if it matches any command
-                        for (const cmd in commands) {
-                            if (command.includes(cmd)) {
-                                addOutput(`🎤 Voice command detected: <span class="highlight">${cmd}</span>`, null);
-                                executeCommand(cmd);
-                                break;
-                            }
-                        }
-                    }
-                };
-                
-                recognition.onerror = function(event) {
-                    console.log('Speech recognition error', event.error);
-                };
-                
-                // Start recognition
-                recognition.start();
-                
-                // Add voice command indicator
-                const voiceIndicator = document.createElement('div');
-                voiceIndicator.style.position = 'fixed';
-                voiceIndicator.style.bottom = '20px';
-                voiceIndicator.style.right = '20px';
-                voiceIndicator.style.backgroundColor = 'rgba(0, 255, 65, 0.2)';
-                voiceIndicator.style.color = '#00ff41';
-                voiceIndicator.style.padding = '8px 15px';
-                voiceIndicator.style.borderRadius = '20px';
-                voiceIndicator.style.fontFamily = 'monospace';
-                voiceIndicator.style.fontSize = '14px';
-                voiceIndicator.style.zIndex = '1000';
-                voiceIndicator.style.border = '1px solid #00ff41';
-                voiceIndicator.innerHTML = '🎤 Voice commands <span style="opacity:0.7;">(Press Ctrl+S to toggle)</span>';
-                document.body.appendChild(voiceIndicator);
-            }
-        }
-
         // Initialize the portfolio
         function initPortfolio() {
             // Create initial input line
             createInputLine();
             
             // Add welcome message with typing effect
-            addOutput(`👋 Welcome to my interactive portfolio CLI!\n\nType 'help' to see available commands or click the links above.\n\nPlay with the badge on the left: drag to spin, click to flip, double-click to shake!\n\n💡 Pro tip: Press Ctrl+S to toggle speech feedback`, null, 50);
+            addOutput(`👋 Welcome to my interactive portfolio CLI!\n\nType 'help' to see available commands or click the links above.\n\nPlay with the badge on the left: drag to spin, click to flip, double-click to shake!`, null, 50);
             
             // Initialize visitor counter
             initVisitorCounter();
             
-            // Initialize voice recognition
-            initVoiceRecognition();
-            
             // Add system info
             setTimeout(() => {
-                addOutput(`💻 System: Portfolio CLI v2.1.0\n⚙️ Theme: ${currentTheme}\n🔊 Speech: ${speechEnabled ? 'enabled' : 'disabled'}`, null);
+                addOutput(`💻 System: Portfolio CLI v2.1.0\n⚙️ Theme: ${currentTheme}`, null);
             }, 1500);
         }
 

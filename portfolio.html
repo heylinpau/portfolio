@@ -3,1024 +3,1791 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulin Clement Twakeshimana | Software Engineer & AI Specialist</title>
-    <meta name="description" content="Professional portfolio of Paulin Clement Twakeshimana - Software Engineer specializing in AI, Full-Stack Development, and System Architecture">
-    <meta name="keywords" content="software engineer, AI specialist, full-stack developer, portfolio, machine learning">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <title>Paulin · Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Professional dark theme - easy on eyes */
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #0f1420;
-            --bg-card: #151b2b;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #10b981;
-            --accent-glow: #2563eb;
-            --border: #1e2a3e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --info: #06b6d4;
-            --terminal-bg: #070b14;
-            --terminal-border: #1e2a3e;
-            --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.1);
+            --bg: #04030a;
+            --surface: #0d0b1a;
+            --surface2: #16132a;
+            --border: rgba(255,255,255,0.07);
+            --border2: rgba(255,255,255,0.14);
+            --fg: #e8e4ff;
+            --fg2: rgba(232,228,255,0.55);
+            --fg3: rgba(232,228,255,0.3);
+
+            --violet: #9b6dff;
+            --violet-dim: rgba(155,109,255,0.15);
+            --violet-glow: rgba(155,109,255,0.35);
+            --cyan: #00e5c9;
+            --cyan-dim: rgba(0,229,201,0.12);
+            --pink: #ff4d8d;
+            --pink-dim: rgba(255,77,141,0.12);
+            --amber: #ffa940;
+            --amber-dim: rgba(255,169,64,0.12);
+            --green: #4dffb0;
+            --green-dim: rgba(77,255,176,0.12);
+
+            --prompt: var(--violet);
+            --cmd: var(--cyan);
+            --font-mono: 'Space Mono', monospace;
+            --font-display: 'Syne', sans-serif;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        /* Animated background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
             height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            overflow-x: hidden;
         }
-        
-        /* Layout */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
+
+        body { display: flex; flex-direction: row; height: 100vh; overflow: hidden; }
+
+        /* ── NOISE OVERLAY ─────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
+        }
+
+        /* ── AURORA BACKGROUND ─────────────────────────── */
+        .aurora {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+            overflow: hidden;
+        }
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.18;
+            animation: drift 20s ease-in-out infinite alternate;
+        }
+        .aurora-blob:nth-child(1) { width: 600px; height: 600px; background: var(--violet); top: -200px; left: -100px; animation-duration: 25s; }
+        .aurora-blob:nth-child(2) { width: 400px; height: 400px; background: var(--cyan); top: 40%; right: -100px; animation-duration: 18s; animation-delay: -5s; }
+        .aurora-blob:nth-child(3) { width: 300px; height: 300px; background: var(--pink); bottom: 0; left: 30%; animation-duration: 22s; animation-delay: -10s; }
+
+        @keyframes drift {
+            0%   { transform: translate(0,0) scale(1); }
+            33%  { transform: translate(40px,-60px) scale(1.1); }
+            66%  { transform: translate(-30px,30px) scale(0.95); }
+            100% { transform: translate(20px,50px) scale(1.05); }
+        }
+
+        /* ── LEFT PANEL ────────────────────────────────── */
+        #left-half {
+            width: 38vw;
+            min-width: 320px;
+            max-width: 480px;
+            background: var(--surface);
+            border-right: 1px solid var(--border2);
+            display: flex;
+            flex-direction: column;
+            padding: 48px 36px 36px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #left-half::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink));
+        }
+
+        /* Scanlines */
+        #left-half::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none;
+        }
+
+        .name-block { margin-bottom: 40px; }
+
+        .name-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-family: var(--font-mono);
+            color: var(--violet);
+            background: var(--violet-dim);
+            border: 1px solid var(--violet-glow);
+            padding: 3px 10px;
+            border-radius: 3px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .profile-name {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .profile-name span {
+            display: block;
+            background: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 60%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-role {
+            font-size: 11px;
+            color: var(--fg2);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        /* Stat pills */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+
+        .stat-pill {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: default;
+        }
+        .stat-pill:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 10px;
+            color: var(--fg3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .stat-pill:nth-child(1) .stat-num { color: var(--violet); }
+        .stat-pill:nth-child(2) .stat-num { color: var(--cyan); }
+        .stat-pill:nth-child(3) .stat-num { color: var(--pink); }
+        .stat-pill:nth-child(4) .stat-num { color: var(--amber); }
+
+        /* Quick nav */
+        .quick-nav { display: flex; flex-direction: column; gap: 4px; margin-bottom: 36px; }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s, padding-left 0.2s;
+            font-size: 12px;
+            color: var(--fg2);
+            border: 1px solid transparent;
+        }
+        .nav-item:hover {
+            background: var(--violet-dim);
+            border-color: var(--violet-glow);
+            color: #fff;
+            padding-left: 20px;
+        }
+        .nav-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .nav-item:hover .nav-dot { transform: scale(1.5); }
+        .nav-item:nth-child(1) .nav-dot { background: var(--violet); }
+        .nav-item:nth-child(2) .nav-dot { background: var(--cyan); }
+        .nav-item:nth-child(3) .nav-dot { background: var(--pink); }
+        .nav-item:nth-child(4) .nav-dot { background: var(--amber); }
+        .nav-item:nth-child(5) .nav-dot { background: var(--green); }
+        .nav-item:nth-child(6) .nav-dot { background: var(--violet); }
+        .nav-item:nth-child(7) .nav-dot { background: var(--cyan); }
+        .nav-item:nth-child(8) .nav-dot { background: var(--pink); }
+
+        /* Glitch name animation on hover */
+        .profile-name:hover span {
+            animation: glitch 0.4s steps(2) forwards;
+        }
+        @keyframes glitch {
+            0%  { text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
+            25% { text-shadow: -3px 0 var(--violet), 3px 0 var(--pink); }
+            50% { text-shadow: 1px 0 var(--cyan), -1px 0 var(--violet); }
+            75% { text-shadow: -1px 0 var(--pink), 2px 0 var(--green); }
+            100%{ text-shadow: none; }
+        }
+
+        /* Status bar */
+        .status-bar {
+            margin-top: auto;
+            display: flex; align-items: center; gap: 8px;
+            font-size: 10px;
+            color: var(--fg3);
+        }
+        .status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse-status 2s ease infinite;
+        }
+        @keyframes pulse-status {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(77,255,176,0.5); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 5px rgba(77,255,176,0); }
+        }
+
+        /* ── RIGHT PANEL ───────────────────────────────── */
+        #right-half {
+            flex: 1;
+            min-height: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
             position: relative;
             z-index: 1;
         }
-        
-        /* Header / Hero Section */
-        .hero {
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 24px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-badges {
+
+        #header {
+            background: var(--surface);
+            padding: 0 28px;
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
+            align-items: center;
+            gap: 4px;
+            border-bottom: 1px solid var(--border2);
+            height: 52px;
+            flex-shrink: 0;
+            overflow-x: auto;
         }
-        
-        .badge {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--accent-primary);
-            transition: all 0.3s;
+
+        #header::before {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--violet), var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #header:hover::before { opacity: 1; }
+
+        .nav-btn {
+            color: var(--fg2);
+            text-decoration: none;
+            font-size: 11px;
+            font-family: var(--font-mono);
             cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: color 0.15s, background 0.15s;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
         }
-        
-        .badge:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-2px);
+        .nav-btn:hover { color: #fff; background: var(--violet-dim); }
+
+        .nav-sep { color: var(--fg3); font-size: 11px; user-select: none; }
+
+        #theme-switcher {
+            margin-left: auto;
+            background: none;
+            border: 1px solid var(--border2);
+            color: var(--fg2);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            transition: all 0.2s;
+            flex-shrink: 0;
         }
-        
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent-primary);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Main Content Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* Sidebar */
-        .sidebar {
+        #theme-switcher:hover { border-color: var(--violet); color: var(--violet); }
+
+        /* ── TERMINAL ──────────────────────────────────── */
+        #terminal-wrap {
+            flex: 1;
+            overflow: hidden;
+            padding: 20px 24px 20px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            min-height: 0;
         }
-        
-        .info-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-        }
-        
-        .info-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-secondary);
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-        
-        .contact-item:hover {
-            color: var(--accent-primary);
-        }
-        
-        .contact-item .emoji {
-            font-size: 1.2rem;
-            width: 24px;
-        }
-        
-        .skill-tag {
-            display: inline-block;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin: 0.25rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .skill-tag:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        /* Terminal Section */
-        .terminal-section {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-        
-        .terminal-header {
-            background: var(--bg-secondary);
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--error);
-        }
-        
-        .terminal-dot:nth-child(2) {
-            background: var(--warning);
-        }
-        
-        .terminal-dot:nth-child(3) {
-            background: var(--success);
-        }
-        
-        .terminal-title {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-left: auto;
-            font-family: monospace;
-        }
-        
+
         #terminal {
-            background: var(--terminal-bg);
-            padding: 1.5rem;
-            min-height: 400px;
-            max-height: 500px;
+            flex: 1;
+            min-height: 0;
             overflow-y: auto;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.9rem;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 24px 28px 12px;
+            font-size: 13px;
+            line-height: 1.7;
+            scrollbar-width: thin;
+            scrollbar-color: var(--surface2) transparent;
+            position: relative;
         }
-        
-        #input-line {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
+
+        #terminal::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink), var(--amber));
         }
-        
-        #prompt {
-            color: var(--success);
-            font-family: monospace;
+
+        /* Terminal chrome dots */
+        .term-chrome {
+            display: flex; align-items: center; gap: 7px;
+            margin-bottom: 18px;
         }
-        
+        .chrome-dot {
+            width: 11px; height: 11px;
+            border-radius: 50%;
+        }
+        .chrome-dot:nth-child(1) { background: #ff5f57; }
+        .chrome-dot:nth-child(2) { background: #febc2e; }
+        .chrome-dot:nth-child(3) { background: #28c840; }
+        .chrome-label {
+            margin-left: 8px;
+            font-size: 10px;
+            color: var(--fg3);
+            letter-spacing: 0.08em;
+        }
+
+        #input-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+
+        #prompt { color: var(--prompt); }
+        #prompt .at { color: var(--cyan); }
+        #prompt .host { color: var(--pink); }
+        #prompt .sep { color: var(--fg3); }
+        #prompt .dollar { color: var(--amber); }
+
         #input {
             background: none;
             border: none;
-            color: var(--text-primary);
-            font-family: monospace;
-            font-size: 0.9rem;
-            flex: 1;
+            color: var(--cmd);
+            font-family: var(--font-mono);
+            font-size: 13px;
             outline: none;
+            flex-grow: 1;
+            caret-color: var(--violet);
         }
-        
+
         .output {
-            margin-bottom: 1rem;
+            margin-bottom: 14px;
             opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s;
+            transform: translateY(6px);
+            transition: opacity 0.25s, transform 0.25s;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
-        
-        .output.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .output.visible { opacity: 1; transform: translateY(0); }
+
+        .cmd-echo {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 6px;
+            font-family: var(--font-mono);
         }
-        
-        .command {
-            color: var(--accent-primary);
-            font-weight: bold;
+
+        /* Syntax colors */
+        .c-violet { color: var(--violet); }
+        .c-cyan   { color: var(--cyan); }
+        .c-pink   { color: var(--pink); }
+        .c-amber  { color: var(--amber); }
+        .c-green  { color: var(--green); }
+        .c-dim    { color: var(--fg2); }
+        .c-dimmer { color: var(--fg3); }
+        .c-white  { color: #fff; }
+
+        .error   { color: var(--pink); }
+        .success { color: var(--green); }
+        .warning { color: var(--amber); }
+        .info    { color: var(--cyan); }
+        .command { color: var(--cmd); font-weight: 700; }
+
+        a, .link {
+            color: var(--cyan);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            transition: color 0.15s;
         }
-        
-        .error {
-            color: var(--error);
+        a:hover, .link:hover { color: var(--violet); }
+
+        .email { color: var(--cyan); text-decoration: underline; }
+
+        .highlight {
+            background: var(--violet-dim);
+            color: var(--violet);
+            padding: 1px 6px;
+            border-radius: 3px;
+            border: 1px solid var(--violet-glow);
         }
-        
-        .success {
-            color: var(--success);
-        }
-        
-        .info {
-            color: var(--info);
-        }
-        
-        /* Timeline */
+
+        /* ── TIMELINE ──────────────────────────────────── */
         .timeline {
+            padding-left: 24px;
             position: relative;
-            padding-left: 2rem;
+            margin: 4px 0;
         }
-        
         .timeline::before {
             content: '';
             position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
+            left: 6px; top: 8px; bottom: 8px;
             width: 2px;
-            background: var(--accent-primary);
+            background: linear-gradient(180deg, var(--violet), var(--cyan), var(--pink));
+            border-radius: 2px;
         }
-        
-        .timeline-item {
+
+        .timeline-event {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 18px;
             opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s;
+            transform: translateX(-8px);
+            transition: opacity 0.4s, transform 0.4s;
         }
-        
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
+        .timeline-event.visible { opacity: 1; transform: translateX(0); }
+
         .timeline-dot {
             position: absolute;
-            left: -1.7rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
+            left: -20px;
+            top: 8px;
+            width: 12px; height: 12px;
             border-radius: 50%;
-            background: var(--accent-primary);
-            box-shadow: 0 0 10px var(--accent-primary);
+            border: 2px solid var(--bg);
+            z-index: 1;
         }
-        
+        .timeline-event:nth-child(1) .timeline-dot { background: var(--violet); box-shadow: 0 0 8px var(--violet); }
+        .timeline-event:nth-child(2) .timeline-dot { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+        .timeline-event:nth-child(3) .timeline-dot { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+        .timeline-event:nth-child(4) .timeline-dot { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+        .timeline-event:nth-child(5) .timeline-dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+        .timeline-event:nth-child(6) .timeline-dot { background: var(--violet); box-shadow: 0 0 8px var(--violet); }
+
         .timeline-content {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 1rem;
-            border-radius: 12px;
-            border-left: 3px solid var(--accent-primary);
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--fg) !important;
+            transition: border-color 0.2s, transform 0.2s;
         }
-        
-        .timeline-content strong {
-            color: var(--accent-primary);
-            font-size: 1.1rem;
+        .timeline-content:hover {
+            border-color: var(--violet);
+            transform: translateX(4px);
         }
-        
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .project-card {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 1.2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .project-title {
-            font-weight: 700;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
+        .timeline-content strong { color: #fff; font-family: var(--font-display); font-weight: 700; }
+        .timeline-content .dates { float: right; font-size: 11px; color: var(--fg3); font-style: italic; }
+        .timeline-content ul { margin: 8px 0 0 16px; padding: 0; }
+        .timeline-content li { margin-bottom: 3px; color: var(--fg2) !important; font-size: 12px; }
+        .timeline-content .company { color: var(--cyan); font-size: 12px; }
+
+        /* Tech tags */
         .tech-tag {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-        }
-        
-        /* Quick Actions */
-        .quick-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            justify-content: center;
-        }
-        
-        .action-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .action-btn:hover {
-            background: var(--accent-primary);
-            border-color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-primary);
-            border-radius: 4px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .hero {
-                padding: 2rem 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        /* Loading animation */
-        .typing-cursor {
             display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background: var(--accent-primary);
-            animation: blink 1s infinite;
-            margin-left: 2px;
-            vertical-align: middle;
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin: 3px 3px 0 0;
+            background: var(--violet-dim);
+            color: var(--violet);
+            border: 1px solid var(--violet-glow);
+            letter-spacing: 0.05em;
         }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+
+        /* ── THEME VARIANTS ────────────────────────────── */
+        [data-theme="neon"] {
+            --bg: #000;
+            --surface: #080808;
+            --surface2: #111;
+            --violet: #bf00ff;
+            --violet-dim: rgba(191,0,255,0.12);
+            --violet-glow: rgba(191,0,255,0.3);
+            --cyan: #00ffff;
+            --pink: #ff0080;
+            --amber: #ffff00;
+            --green: #00ff88;
+            --prompt: #00ffff;
         }
+        [data-theme="aurora"] {
+            --bg: #020b1a;
+            --surface: #051226;
+            --surface2: #0a1f3a;
+            --violet: #7b52ff;
+            --violet-dim: rgba(123,82,255,0.15);
+            --violet-glow: rgba(123,82,255,0.3);
+            --cyan: #00d4ff;
+            --pink: #ff6b9d;
+            --amber: #ffca28;
+            --green: #69ffb5;
+            --prompt: #00d4ff;
+        }
+        [data-theme="ember"] {
+            --bg: #0d0800;
+            --surface: #1a0f00;
+            --surface2: #261600;
+            --violet: #ff6200;
+            --violet-dim: rgba(255,98,0,0.12);
+            --violet-glow: rgba(255,98,0,0.3);
+            --cyan: #ffc300;
+            --pink: #ff0040;
+            --amber: #ffe866;
+            --green: #00ffb3;
+            --prompt: #ff6200;
+            --cmd: #ffc300;
+        }
+        [data-theme="void"] {
+            --bg: #f8f7ff;
+            --surface: #fff;
+            --surface2: #f0eeff;
+            --border: rgba(100,80,200,0.1);
+            --border2: rgba(100,80,200,0.18);
+            --fg: #1a1530;
+            --fg2: rgba(26,21,48,0.6);
+            --fg3: rgba(26,21,48,0.35);
+            --violet: #5a2ee0;
+            --violet-dim: rgba(90,46,224,0.08);
+            --violet-glow: rgba(90,46,224,0.2);
+            --cyan: #0097b3;
+            --pink: #d4006e;
+            --amber: #c26e00;
+            --green: #007a4d;
+            --prompt: #5a2ee0;
+            --cmd: #0097b3;
+        }
+
+        /* ── PONG MODAL ────────────────────────────────── */
+        .modal-wrap {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: none;
+            align-items: center; justify-content: center;
+        }
+        .modal-wrap.open { display: flex; }
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+        }
+        .modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink));
+            border-radius: 12px 12px 0 0;
+        }
+        .modal-title { font-family: var(--font-display); font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .modal-close {
+            background: none;
+            border: 1px solid var(--border2);
+            color: var(--fg2);
+            padding: 5px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            margin-top: 12px;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { border-color: var(--pink); color: var(--pink); }
+
+        /* ── QR MODAL ──────────────────────────────────── */
+        #qr-modal-wrap { text-align: center; }
+
+        /* ── RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 860px) {
+            body { flex-direction: column; height: auto; overflow: auto; }
+            #left-half { width: 100%; max-width: 100%; min-width: 0; height: auto; overflow: visible; border-right: none; border-bottom: 1px solid var(--border2); padding: 28px 20px; }
+            #right-half { height: auto; flex: none; min-height: 600px; }
+            #terminal-wrap { padding: 12px; }
+            .stat-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (max-width: 520px) {
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            #header { gap: 2px; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--violet); }
+
+        /* Cursor blink */
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        #input::after { content: '█'; animation: blink 1s step-start infinite; }
+
+        /* ── CHAT TOGGLE BTN ──────────────────────────────── */
+        #chat-toggle-btn {
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            border: none;
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            margin-left: 6px;
+            transition: opacity 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+        #chat-toggle-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        /* ── CHAT PANEL ───────────────────────────────────── */
+        #chat-panel {
+            position: fixed;
+            top: 0; right: 0;
+            width: 360px;
+            height: 100vh;
+            background: var(--surface);
+            border-left: 1px solid var(--border2);
+            display: flex;
+            flex-direction: column;
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+        }
+        #chat-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink));
+        }
+        #chat-panel.open { transform: translateX(0); }
+
+        #chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        #chat-header-left { display: flex; align-items: center; gap: 12px; }
+        #chat-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; color: #fff;
+            flex-shrink: 0;
+        }
+        #chat-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #fff; }
+        #chat-status { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+        #chat-status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--green);
+            animation: pulse-status 2s ease infinite;
+            flex-shrink: 0;
+        }
+        #chat-status-dot.thinking { background: var(--amber); }
+        #chat-status-text { font-size: 10px; color: var(--fg3); }
+        #chat-close-btn {
+            background: none; border: none;
+            color: var(--fg3); cursor: pointer;
+            font-size: 14px; padding: 4px;
+            transition: color 0.15s;
+            line-height: 1;
+        }
+        #chat-close-btn:hover { color: var(--pink); }
+
+        /* API key bar */
+        #chat-api-bar {
+            display: flex; gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface2);
+            flex-shrink: 0;
+        }
+        #chat-api-bar.hidden { display: none; }
+        #chat-api-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 5px;
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 6px 10px;
+            outline: none;
+            min-width: 0;
+        }
+        #chat-api-input:focus { border-color: var(--violet); }
+        #chat-api-save {
+            background: var(--violet-dim);
+            border: 1px solid var(--violet-glow);
+            color: var(--violet);
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+        #chat-api-save:hover { background: var(--violet); color: #fff; }
+
+        /* Messages */
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--surface2) transparent;
+            min-height: 0;
+        }
+
+        .chat-msg { display: flex; flex-direction: column; max-width: 88%; }
+        .chat-msg-user { align-self: flex-end; align-items: flex-end; }
+        .chat-msg-ai   { align-self: flex-start; align-items: flex-start; }
+
+        .chat-bubble {
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            line-height: 1.6;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .chat-msg-user .chat-bubble {
+            background: linear-gradient(135deg, var(--violet), #7b52ff);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg-ai .chat-bubble {
+            background: var(--surface2);
+            color: var(--fg);
+            border: 1px solid var(--border2);
+            border-bottom-left-radius: 4px;
+        }
+
+        /* Typing indicator */
+        .chat-typing {
+            display: flex; align-items: center; gap: 4px;
+            padding: 10px 14px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+        .typing-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--fg3);
+            animation: typing-bounce 1.2s ease infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        /* Suggestions */
+        #chat-suggestions {
+            padding: 0 14px 10px;
+            display: flex; flex-wrap: wrap; gap: 6px;
+            flex-shrink: 0;
+        }
+        .chat-suggest {
+            background: var(--violet-dim);
+            border: 1px solid var(--violet-glow);
+            color: var(--violet);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
+        .chat-suggest:hover { background: var(--violet); color: #fff; }
+
+        /* Input row */
+        #chat-input-row {
+            display: flex; gap: 8px;
+            padding: 12px 14px;
+            border-top: 1px solid var(--border2);
+            flex-shrink: 0;
+        }
+        #chat-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 9px 14px;
+            outline: none;
+            min-width: 0;
+            transition: border-color 0.15s;
+        }
+        #chat-input:focus { border-color: var(--violet); }
+        #chat-send-btn {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+        #chat-send-btn:hover { opacity: 0.85; transform: scale(1.05); }
+        #chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        @media (max-width: 520px) {
+            #chat-panel { width: 100vw; }
+        }
+
+
+        /* ── CHAT TOGGLE BTN ─────────────── */
+        #chat-toggle-btn {
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            border: none;
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            margin-left: 6px;
+            transition: opacity 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+        #chat-toggle-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        /* ── CHAT PANEL ────────────────────── */
+        #chat-panel {
+            position: fixed;
+            top: 0; right: 0;
+            width: 360px;
+            height: 100vh;
+            background: var(--surface);
+            border-left: 1px solid var(--border2);
+            display: flex;
+            flex-direction: column;
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+        }
+        #chat-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink));
+        }
+        #chat-panel.open { transform: translateX(0); }
+        #chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        #chat-header-left { display: flex; align-items: center; gap: 12px; }
+        #chat-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; color: #fff;
+            flex-shrink: 0;
+        }
+        #chat-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #fff; }
+        #chat-status { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+        #chat-status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--green);
+            animation: pulse-status 2s ease infinite;
+            flex-shrink: 0;
+        }
+        #chat-status-dot.thinking { background: var(--amber); animation: none; }
+        #chat-status-text { font-size: 10px; color: var(--fg3); }
+        #chat-close-btn {
+            background: none; border: none;
+            color: var(--fg3); cursor: pointer;
+            font-size: 14px; padding: 4px;
+            transition: color 0.15s; line-height: 1;
+        }
+        #chat-close-btn:hover { color: var(--pink); }
+        #chat-api-bar {
+            display: flex; gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface2);
+            flex-shrink: 0;
+        }
+        #chat-api-bar.hidden { display: none; }
+        #chat-api-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 5px;
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 6px 10px;
+            outline: none;
+            min-width: 0;
+        }
+        #chat-api-input:focus { border-color: var(--violet); }
+        #chat-api-save {
+            background: var(--violet-dim);
+            border: 1px solid var(--violet-glow);
+            color: var(--violet);
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+        #chat-api-save:hover { background: var(--violet); color: #fff; }
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--surface2) transparent;
+            min-height: 0;
+        }
+        .chat-msg { display: flex; flex-direction: column; max-width: 88%; }
+        .chat-msg-user { align-self: flex-end; align-items: flex-end; }
+        .chat-msg-ai   { align-self: flex-start; align-items: flex-start; }
+        .chat-bubble {
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            line-height: 1.6;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .chat-msg-user .chat-bubble {
+            background: linear-gradient(135deg, var(--violet), #7b52ff);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg-ai .chat-bubble {
+            background: var(--surface2);
+            color: var(--fg);
+            border: 1px solid var(--border2);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-typing {
+            display: flex; align-items: center; gap: 4px;
+            padding: 10px 14px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+        .typing-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--fg3);
+            animation: typing-bounce 1.2s ease infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+        #chat-suggestions {
+            padding: 0 14px 10px;
+            display: flex; flex-wrap: wrap; gap: 6px;
+            flex-shrink: 0;
+        }
+        .chat-suggest {
+            background: var(--violet-dim);
+            border: 1px solid var(--violet-glow);
+            color: var(--violet);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
+        .chat-suggest:hover { background: var(--violet); color: #fff; }
+        #chat-input-row {
+            display: flex; gap: 8px;
+            padding: 12px 14px;
+            border-top: 1px solid var(--border2);
+            flex-shrink: 0;
+        }
+        #chat-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 9px 14px;
+            outline: none;
+            min-width: 0;
+            transition: border-color 0.15s;
+        }
+        #chat-input:focus { border-color: var(--violet); }
+        #chat-send-btn {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--violet), var(--cyan));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+        #chat-send-btn:hover { opacity: 0.85; transform: scale(1.05); }
+        #chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        @media (max-width: 520px) { #chat-panel { width: 100vw; } }
+
     </style>
 </head>
-<body>
-    <div class="animated-bg"></div>
-    
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero fade-in">
-            <h1>Paulin Clement Twakeshimana</h1>
-            <div class="hero-subtitle">Software Engineer & AI Specialist</div>
-            <div class="hero-badges">
-                <span class="badge" onclick="executeCommand('about')">🚀 4+ Years Experience</span>
-                <span class="badge" onclick="executeCommand('skills')">🤖 AI/ML Expert</span>
-                <span class="badge" onclick="executeCommand('projects')">💻 Full-Stack Developer</span>
-                <span class="badge" onclick="executeCommand('experience')">☁️ Cloud Architecture</span>
+<body data-theme="default">
+    <div class="aurora">
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+    </div>
+
+    <!-- LEFT PANEL -->
+    <div id="left-half">
+        <div class="name-block">
+            <div class="name-tag">∴ available for work</div>
+            <h1 class="profile-name">
+                Paulin<br>
+                <span>Twakeshimana</span>
+            </h1>
+            <div class="profile-role">Software Engineer &amp; AI Specialist</div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-pill">
+                <div class="stat-num">5+</div>
+                <div class="stat-label">Years exp.</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Published papers</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">50K+</div>
+                <div class="stat-label">Users served</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Certifications</div>
             </div>
         </div>
-        
-        <!-- Stats Section -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="projectsCount">0+</div>
-                <div class="stat-label">Projects Completed</div>
+
+        <nav class="quick-nav">
+            <div class="nav-item" onclick="executeCommand('about')">
+                <div class="nav-dot"></div>about
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="experienceCount">0+</div>
-                <div class="stat-label">Years Experience</div>
+            <div class="nav-item" onclick="executeCommand('experience')">
+                <div class="nav-dot"></div>experience
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="techCount">0+</div>
-                <div class="stat-label">Technologies</div>
+            <div class="nav-item" onclick="executeCommand('skills')">
+                <div class="nav-dot"></div>skills
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="clientCount">0+</div>
-                <div class="stat-label">Happy Clients</div>
+            <div class="nav-item" onclick="executeCommand('projects')">
+                <div class="nav-dot"></div>projects
             </div>
+            <div class="nav-item" onclick="executeCommand('education')">
+                <div class="nav-dot"></div>education
+            </div>
+            <div class="nav-item" onclick="executeCommand('certifications')">
+                <div class="nav-dot"></div>certifications
+            </div>
+            <div class="nav-item" onclick="executeCommand('leadership')">
+                <div class="nav-dot"></div>leadership
+            </div>
+            <div class="nav-item" onclick="executeCommand('contact')">
+                <div class="nav-dot"></div>contact
+            </div>
+        </nav>
+
+        <div class="status-bar">
+            <div class="status-dot"></div>
+            <span>online · Hong Kong · UTC+8</span>
         </div>
-        
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-            <button class="action-btn" onclick="executeCommand('about')">📖 About Me</button>
-            <button class="action-btn" onclick="executeCommand('projects')">📁 Projects</button>
-            <button class="action-btn" onclick="executeCommand('skills')">⚡ Skills</button>
-            <button class="action-btn" onclick="executeCommand('experience')">💼 Experience</button>
-            <button class="action-btn" onclick="executeCommand('contact')">📧 Contact</button>
-            <button class="action-btn" onclick="executeCommand('help')">❓ Help</button>
-            <button class="action-btn" onclick="executeCommand('clear')">🗑️ Clear</button>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div id="right-half">
+        <div id="header">
+            <button class="nav-btn" onclick="executeCommand('help')">help</button>
+            <span class="nav-sep">/</span>
+            <button class="nav-btn" onclick="executeCommand('projects')">projects</button>
+            <span class="nav-sep">/</span>
+            <button class="nav-btn" onclick="executeCommand('resume')">resume</button>
+            <span class="nav-sep">/</span>
+            <button class="nav-btn" onclick="executeCommand('pong')">pong</button>
+            <span class="nav-sep">/</span>
+            <button class="nav-btn" onclick="executeCommand('clear')">clear</button>
+            <button id="theme-switcher">theme</button>
+            <button id="chat-toggle-btn" title="Ask AI about Paulin" aria-label="Open AI chat">ask AI</button>
         </div>
-        
-        <!-- Main Content -->
-        <div class="main-grid">
-            <!-- Left Sidebar -->
-            <div class="sidebar">
-                <div class="info-card">
-                    <h3>📌 Contact Information</h3>
-                    <div class="contact-item" onclick="executeCommand('contact')">
-                        <span class="emoji">📧</span>
-                        <span>paulin.twakeshimana@example.com</span>
-                    </div>
-                    <div class="contact-item" onclick="executeCommand('contact')">
-                        <span class="emoji">📱</span>
-                        <span>+852 9123 4567</span>
-                    </div>
-                    <div class="contact-item" onclick="executeCommand('contact')">
-                        <span class="emoji">📍</span>
-                        <span>Hong Kong</span>
-                    </div>
-                    <div class="contact-item" onclick="window.open('https://linkedin.com/in/paulin-twakeshimana', '_blank')">
-                        <span class="emoji">🔗</span>
-                        <span>linkedin.com/in/paulin-twakeshimana</span>
-                    </div>
-                    <div class="contact-item" onclick="window.open('https://github.com/paulin-twakeshimana', '_blank')">
-                        <span class="emoji">💻</span>
-                        <span>github.com/paulin-twakeshimana</span>
-                    </div>
+
+        <div id="terminal-wrap">
+            <div id="terminal">
+                <div class="term-chrome">
+                    <div class="chrome-dot"></div>
+                    <div class="chrome-dot"></div>
+                    <div class="chrome-dot"></div>
+                    <span class="chrome-label">paulin@portfolio ~ zsh</span>
                 </div>
-                
-                <div class="info-card">
-                    <h3>🎯 Core Competencies</h3>
-                    <div>
-                        <span class="skill-tag" onclick="executeCommand('skills')">Python</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">JavaScript/TypeScript</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">React</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">Node.js</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">TensorFlow</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">PyTorch</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">AWS</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">Docker</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">Kubernetes</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">GraphQL</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">MongoDB</span>
-                        <span class="skill-tag" onclick="executeCommand('skills')">PostgreSQL</span>
-                    </div>
-                </div>
-                
-                <div class="info-card">
-                    <h3>🏆 Achievements</h3>
-                    <div class="contact-item">
-                        <span class="emoji">🏅</span>
-                        <span>AWS Certified ML Specialist</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="emoji">📄</span>
-                        <span>3 Research Publications</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="emoji">🎓</span>
-                        <span>M.Sc. AI - PolyU</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="emoji">💡</span>
-                        <span>2 Patent Filings</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Terminal Section -->
-            <div class="terminal-section">
-                <div class="terminal-header">
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-title">developer@portfolio:~/interactive-cli</div>
-                </div>
-                <div id="terminal"></div>
             </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script>
-        // Portfolio Data
-        const portfolioData = {
-            about: "Hi, I'm Paulin Clement Twakeshimana! 👋\n\nI'm a passionate Software Engineer and AI Specialist with over 4 years of experience building innovative solutions. I hold an M.Sc. in Artificial Intelligence from Hong Kong Polytechnic University and have worked on projects ranging from computer vision systems to full-stack web applications.\n\nMy passion lies at the intersection of AI and software engineering, creating intelligent systems that solve real-world problems. I'm always eager to learn new technologies and take on challenging projects.\n\n💡 Fun fact: I once built a working AI model in just 24 hours during a hackathon!",
-            
-            experience: [
-                {
-                    title: "AI Research Engineer",
-                    company: "Tech Innovations Ltd",
-                    period: "2022 - Present",
-                    details: [
-                        "Lead AI model development for computer vision systems achieving 95% accuracy",
-                        "Manage team of 4 engineers in production deployment",
-                        "Published 3 research papers in top-tier conferences"
-                    ]
-                },
-                {
-                    title: "Full-Stack Developer",
-                    company: "Web Solutions Inc",
-                    period: "2020 - 2022",
-                    details: [
-                        "Built scalable web applications serving 50,000+ users",
-                        "Implemented CI/CD pipelines reducing deployment time by 60%",
-                        "Mentored 5 junior developers"
-                    ]
-                }
-            ],
-            
-            skills: [
-                "Python", "JavaScript/TypeScript", "React", "Node.js", 
-                "TensorFlow", "PyTorch", "AWS", "Docker", "Kubernetes",
-                "GraphQL", "MongoDB", "PostgreSQL", "Redis", "Git"
-            ],
-            
-            projects: [
-                {
-                    name: "AI Quality Control System",
-                    description: "Computer vision system detecting manufacturing defects with 95% accuracy",
-                    tech: ["Python", "TensorFlow", "OpenCV"]
-                },
-                {
-                    name: "Real-time Collaboration Platform",
-                    description: "Google Docs-like editor with real-time sync",
-                    tech: ["React", "Node.js", "Socket.io", "MongoDB"]
-                },
-                {
-                    name: "ML Pipeline Orchestrator",
-                    description: "Automated ML workflow management system",
-                    tech: ["Python", "Airflow", "Docker", "AWS"]
-                }
-            ],
-            
-            contact: {
-                email: "paulin.twakeshimana@example.com",
-                phone: "+852 9123 4567",
-                location: "Hong Kong",
-                linkedin: "linkedin.com/in/paulin-twakeshimana",
-                github: "github.com/paulin-twakeshimana"
-            }
-        };
-        
-        // Terminal Setup
-        const terminal = document.getElementById('terminal');
-        let history = [];
-        let historyIndex = -1;
-        let isTyping = false;
-        
-        // Commands
-        const commands = {
-            help: function() {
-                return `╔══════════════════════════════════════════════════════════╗
-║                    AVAILABLE COMMANDS                       ║
-╠════════════════════════════════════════════════════════════╣
-║  about       - Learn about me and my background            ║
-║  experience  - View my professional work experience        ║
-║  skills      - See my technical skills and competencies    ║
-║  projects    - Check out my featured projects              ║
-║  contact     - Get my contact information                  ║
-║  stats       - Display portfolio statistics                ║
-║  clear       - Clear the terminal screen                   ║
-║  help        - Show this help message                      ║
-╚════════════════════════════════════════════════════════════╝
 
-💡 Tip: You can also click the buttons above or badges in the sidebar!`;
-            },
-            about: portfolioData.about,
-            experience: 'timeline-experience',
-            skills: 'timeline-skills',
-            projects: 'timeline-projects',
-            contact: `📧 Email: ${portfolioData.contact.email}
-📱 Phone: ${portfolioData.contact.phone}
-📍 Location: ${portfolioData.contact.location}
-🔗 LinkedIn: ${portfolioData.contact.linkedin}
-💻 GitHub: ${portfolioData.contact.github}`,
-            clear: 'clear',
-            stats: 'stats'
-        };
-        
-        // Initialize stats with animation
-        function animateStats() {
-            const projectsCount = document.getElementById('projectsCount');
-            const experienceCount = document.getElementById('experienceCount');
-            const techCount = document.getElementById('techCount');
-            const clientCount = document.getElementById('clientCount');
-            
-            let projects = 0;
-            let experience = 0;
-            let tech = 0;
-            let clients = 0;
-            
-            const targetProjects = 25;
-            const targetExperience = 4;
-            const targetTech = 30;
-            const targetClients = 15;
-            
-            const interval = setInterval(() => {
-                if (projects < targetProjects) {
-                    projects++;
-                    projectsCount.textContent = projects + '+';
-                }
-                if (experience < targetExperience) {
-                    experience++;
-                    experienceCount.textContent = experience + '+';
-                }
-                if (tech < targetTech) {
-                    tech += 2;
-                    techCount.textContent = Math.min(tech, targetTech) + '+';
-                }
-                if (clients < targetClients) {
-                    clients++;
-                    clientCount.textContent = clients + '+';
-                }
-                
-                if (projects >= targetProjects && experience >= targetExperience && tech >= targetTech && clients >= targetClients) {
-                    clearInterval(interval);
-                }
-            }, 50);
+    <!-- PONG MODAL -->
+    <div class="modal-wrap" id="pong-modal-wrap">
+        <div class="modal-box">
+            <div class="modal-title">pong.exe</div>
+            <canvas id="pong-canvas" width="400" height="280" style="background:#000;display:block;border-radius:6px;"></canvas>
+            <div style="text-align:center;color:var(--fg3);font-size:11px;margin-top:8px;">move mouse or touch to control right paddle</div>
+            <div style="text-align:center;"><button class="modal-close" id="pong-close">close</button></div>
+        </div>
+    </div>
+
+    <!-- QR MODAL -->
+    <div class="modal-wrap" id="qr-modal-wrap">
+        <div class="modal-box" id="qr-modal">
+            <div class="modal-title">contact.vcf</div>
+            <canvas id="qr-code"></canvas>
+            <div style="color:var(--fg3);font-size:11px;margin-top:8px;text-align:center;">scan to save contact</div>
+            <div style="text-align:center;"><button class="modal-close" id="qr-close">close</button></div>
+        </div>
+    </div>
+
+
+    <!-- CHAT PANEL -->
+    <div id="chat-panel">
+        <div id="chat-header">
+            <div id="chat-header-left">
+                <div id="chat-avatar">AI</div>
+                <div>
+                    <div id="chat-name">Ask about Paulin</div>
+                    <div id="chat-status"><span id="chat-status-dot"></span><span id="chat-status-text">powered by DeepSeek</span></div>
+                </div>
+            </div>
+            <button id="chat-close-btn" aria-label="Close chat">&#x2715;</button>
+        </div>
+        <div id="chat-api-bar">
+            <input id="chat-api-input" type="password" placeholder="Paste DeepSeek API key to start…" autocomplete="off" spellcheck="false">
+            <button id="chat-api-save">save</button>
+        </div>
+        <div id="chat-messages">
+            <div class="chat-msg chat-msg-ai">
+                <div class="chat-bubble">Hey! I know everything about Paulin. Ask me about his experience, projects, skills, or availability.</div>
+            </div>
+        </div>
+        <div id="chat-suggestions">
+            <button class="chat-suggest" onclick="sendSuggestion(this)">Top skills?</button>
+            <button class="chat-suggest" onclick="sendSuggestion(this)">Tell me about his projects</button>
+            <button class="chat-suggest" onclick="sendSuggestion(this)">Is he available to hire?</button>
+        </div>
+        <div id="chat-input-row">
+            <input id="chat-input" type="text" placeholder="Ask anything about Paulin…" autocomplete="off" spellcheck="false">
+            <button id="chat-send-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 8L2 2l2 6-2 6 12-6z" fill="currentColor"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+    const portfolioData = {
+        about: "Hi — I'm Paulin Clement Twakeshimana.\n\nSoftware engineer & AI specialist based in Hong Kong.\nI build fast, immersive web experiences and deploy intelligent systems at scale.\n\nType 'help' for a list of commands.",
+        experience: [
+            { title: "AI Research Engineer", company: "Tech Innovations Ltd", dates: "2022–Present", details: ["Developed ML models for real-time data analysis", "Led team of 4 on a computer vision QC system (95% accuracy)", "Integrated AI into web apps → +35% user engagement", "Published 3 papers on AI in industrial automation"] },
+            { title: "Full-Stack Developer", company: "Web Solutions Inc", dates: "2020–2022", details: ["Built React/Node.js/MongoDB apps", "CI/CD pipelines → 60% faster deployments", "RESTful APIs serving 50,000+ users", "Mentored junior devs, led code reviews"] },
+            { title: "Software Engineering Intern", company: "Global Tech", dates: "2019–2020", details: ["Internal tooling in Python/Django", "DB query optimization → +25% performance", "Agile / sprint planning", "Technical specs & documentation"] }
+        ],
+        skills: [
+            { title: "Artificial Intelligence", details: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "TensorFlow", "PyTorch"] },
+            { title: "Web Development", details: ["React", "Node.js", "Express", "MongoDB", "TypeScript", "GraphQL"] },
+            { title: "Languages", details: ["JavaScript / TypeScript", "Python", "Java", "C++", "SQL"] },
+            { title: "Tools & Platforms", details: ["Git", "Docker", "AWS", "Azure", "CI/CD", "Three.js"] }
+        ],
+        education: [
+            { degree: "M.Sc. Artificial Intelligence", school: "Hong Kong Polytechnic University", year: "2022", details: ["GPA 3.8/4.0", "Thesis: Real-time Object Detection in Industrial Environments", "Academic Excellence Award", "AI Research Group"] },
+            { degree: "B.Sc. Computer Science", school: "University of Rwanda", year: "2019", details: ["GPA 3.7/4.0 · Graduated with Honors", "President, Coding Club", "Organised first university hackathon"] }
+        ],
+        projects: [
+            { name: "AI Quality Control System", desc: "Computer vision system detecting manufacturing defects at 95% accuracy.", link: "https://github.com/paulin-twakeshimana/ai-quality-control", tech: ["Python", "TensorFlow", "OpenCV", "Flask"] },
+            { name: "3D Interactive Portfolio", desc: "Immersive Three.js portfolio showcasing projects in a WebGL environment.", link: "https://github.com/paulin-twakeshimana/3d-portfolio", tech: ["Three.js", "React", "GSAP", "WebGL"] },
+            { name: "Real-time Collaborative Editor", desc: "Browser-based code editor with live multi-user collaboration.", link: "https://github.com/paulin-twakeshimana/collab-editor", tech: ["React", "Socket.io", "Express", "MongoDB"] }
+        ],
+        certifications: [
+            { name: "AWS Certified ML – Specialty", issuer: "Amazon Web Services", date: "2022", details: "Building, training, deploying ML models on AWS" },
+            { name: "TensorFlow Developer Certificate", issuer: "Google", date: "2021", details: "Deep learning models with TensorFlow" },
+            { name: "Azure AI Engineer Associate", issuer: "Microsoft", date: "2021", details: "AI solutions with Azure Cognitive Services" }
+        ],
+        leadership: [
+            { role: "Lead Organiser", organization: "Rwanda Tech Conference", period: "2021–Present", details: "Annual conf. for 500+ developers & industry leaders" },
+            { role: "Mentor", organization: "Code for Africa", period: "2020–2022", details: "Mentored 30+ developers in web dev & AI" },
+            { role: "President", organization: "PolyU AI Club", period: "2021–2022", details: "100+ member student org — workshops & hackathons" }
+        ],
+        contact: {
+            email: "paulin.twakeshimana@example.com",
+            linkedin: "https://linkedin.com/in/paulin-twakeshimana",
+            github: "https://github.com/paulin-twakeshimana",
+            phone: "+852 9123 4567",
+            location: "Hong Kong"
+        },
+        resume: "Paulin_Twakeshimana_Resume.pdf"
+    };
+
+    const COMMANDS = {
+        help: () => `<span class="c-violet">∴ available commands</span>
+
+  <span class="c-cyan">about</span>         who I am
+  <span class="c-cyan">experience</span>    work history
+  <span class="c-cyan">skills</span>        technical skills
+  <span class="c-cyan">education</span>     academic background
+  <span class="c-cyan">projects</span>      things I've built
+  <span class="c-cyan">certifications</span>credentials
+  <span class="c-cyan">leadership</span>    community roles
+  <span class="c-cyan">contact</span>       get in touch
+  <span class="c-amber">resume</span>        download PDF
+  <span class="c-amber">qr</span>            QR code for contact
+  <span class="c-pink">pong</span>          mini pong game
+  <span class="c-pink">matrix</span>        toggle matrix rain
+  <span class="c-pink">secret</span>        ???
+  <span class="c-dimmer">clear</span>         wipe terminal
+  <span class="c-dimmer">help</span>          this message`,
+
+        about: () => portfolioData.about,
+        experience:     () => 'timeline:experience',
+        skills:         () => 'timeline:skills',
+        education:      () => 'timeline:education',
+        projects:       () => 'timeline:projects',
+        certifications: () => 'timeline:certifications',
+        leadership:     () => 'timeline:leadership',
+        contact: () => `<span class="c-dimmer">email    </span> <a class="email" href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>
+<span class="c-dimmer">phone    </span> ${portfolioData.contact.phone}
+<span class="c-dimmer">location </span> ${portfolioData.contact.location}
+<span class="c-dimmer">linkedin </span> <a href="${portfolioData.contact.linkedin}" target="_blank">${portfolioData.contact.linkedin}</a>
+<span class="c-dimmer">github   </span> <a href="${portfolioData.contact.github}" target="_blank">${portfolioData.contact.github}</a>`,
+        resume: () => { window.open(portfolioData.resume,'_blank'); return '<span class="success">↓ opening resume…</span>'; },
+        qr:     () => { showQR(); return '<span class="info">↗ QR code opened</span>'; },
+        matrix: () => { toggleMatrix(); return isMatrixActive ? '<span class="success">matrix rain on</span> — type matrix again to stop' : '<span class="warning">matrix rain off</span>'; },
+        pong:   () => { startPong(); return '<span class="info">loading pong…</span>'; },
+        clear:  () => 'clear',
+        sudo:   () => '<span class="warning">sudo</span>: access granted. type \'secret\' for a treat.',
+        secret: () => { shootConfetti(); return '🎉 <span class="success">secret unlocked!</span> fun fact: I once shipped a working AI model in 24h flat.'; },
+    };
+
+    // ── TERMINAL ENGINE ──────────────────────────────────────
+    const terminal = document.getElementById('terminal');
+    let history = [], histIndex = -1, isTyping = false;
+
+    function promptHTML() {
+        return `<span id="prompt"><span class="c-violet">paulin</span><span class="c-dimmer">@</span><span class="c-cyan">portfolio</span><span class="c-dimmer">:</span><span class="c-pink">~</span><span class="c-amber">$</span></span>`;
+    }
+
+    function createInputLine() {
+        const line = document.createElement('div');
+        line.id = 'input-line';
+        line.innerHTML = `${promptHTML()} <input id="input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input">`;
+        terminal.appendChild(line);
+        const inp = document.getElementById('input');
+        inp.focus();
+        inp.addEventListener('keydown', handleKey);
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function addOutput(html, callback) {
+        const div = document.createElement('div');
+        div.className = 'output';
+        terminal.appendChild(div);
+        requestAnimationFrame(() => div.classList.add('visible'));
+
+        if (html.startsWith('timeline:')) {
+            const type = html.split(':')[1];
+            renderTimeline(portfolioData[type], div, callback, type);
+            return;
         }
-        
-        // Type output animation
-        function typeOutput(text, outputElement, callback, speed = 20) {
-            let index = 0;
-            isTyping = true;
-            outputElement.textContent = '';
-            
-            function type() {
-                if (index < text.length) {
-                    outputElement.textContent += text[index];
-                    index++;
-                    setTimeout(type, speed);
-                    terminal.scrollTop = terminal.scrollHeight;
-                } else {
-                    isTyping = false;
-                    if (callback) callback();
-                }
-            }
-            
-            type();
+
+        div.innerHTML = html;
+        terminal.scrollTop = terminal.scrollHeight;
+        if (callback) callback();
+    }
+
+    function executeCommand(raw) {
+        if (isTyping) return;
+        const cmd = raw.trim().toLowerCase();
+
+        const echo = document.createElement('div');
+        echo.className = 'cmd-echo output';
+        echo.innerHTML = `${promptHTML()} <span class="command">${cmd}</span>`;
+        terminal.appendChild(echo);
+        requestAnimationFrame(() => echo.classList.add('visible'));
+
+        if (!cmd) { createInputLine(); return; }
+
+        history.unshift(cmd);
+        histIndex = -1;
+
+        const fn = COMMANDS[cmd];
+        if (!fn) {
+            addOutput(`<span class="error">command not found:</span> ${cmd} — type 'help' for available commands`, createInputLine);
+            return;
         }
-        
-        // Render timeline
-        function renderTimeline(items, output, callback, type) {
-            const timeline = document.createElement('div');
-            timeline.className = 'timeline';
-            output.appendChild(timeline);
-            
-            if (type === 'skills') {
-                const timelineItem = document.createElement('div');
-                timelineItem.className = 'timeline-item';
-                
+
+        if (cmd === 'clear') {
+            setTimeout(() => {
+                terminal.innerHTML = '';
+                const chrome = document.createElement('div');
+                chrome.className = 'term-chrome';
+                chrome.innerHTML = `<div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div><span class="chrome-label">paulin@portfolio ~ zsh</span>`;
+                terminal.appendChild(chrome);
+                createInputLine();
+            }, 100);
+            return;
+        }
+
+        const result = fn();
+        if (result) {
+            addOutput(result, createInputLine);
+        } else {
+            createInputLine();
+        }
+    }
+
+    function handleKey(e) {
+        const inp = e.target;
+        if (e.key === 'Enter') {
+            const val = inp.value;
+            inp.parentNode.remove();
+            executeCommand(val);
+        } else if (e.key === 'ArrowUp') {
+            if (histIndex < history.length - 1) { histIndex++; inp.value = history[histIndex]; }
+        } else if (e.key === 'ArrowDown') {
+            if (histIndex > 0) { histIndex--; inp.value = history[histIndex]; }
+            else { histIndex = -1; inp.value = ''; }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            const partial = inp.value.toLowerCase();
+            const matches = Object.keys(COMMANDS).filter(c => c.startsWith(partial));
+            if (matches.length === 1) inp.value = matches[0];
+        }
+    }
+
+    // ── TIMELINE ─────────────────────────────────────────────
+    function renderTimeline(items, container, callback, type) {
+        const tl = document.createElement('div');
+        tl.className = 'timeline';
+        container.appendChild(tl);
+
+        items.forEach((item, i) => {
+            setTimeout(() => {
+                const ev = document.createElement('div');
+                ev.className = 'timeline-event';
                 const dot = document.createElement('div');
                 dot.className = 'timeline-dot';
-                timelineItem.appendChild(dot);
-                
+                ev.appendChild(dot);
                 const content = document.createElement('div');
                 content.className = 'timeline-content';
-                content.innerHTML = `
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                        ${items.map(skill => `<span class="skill-tag" style="font-size: 0.9rem; cursor: default;">${skill}</span>`).join('')}
-                    </div>
-                `;
-                
-                timelineItem.appendChild(content);
-                timeline.appendChild(timelineItem);
-                
-                setTimeout(() => {
-                    timelineItem.classList.add('visible');
-                    if (callback) callback();
-                }, 100);
-            } else {
-                items.forEach((item, idx) => {
-                    setTimeout(() => {
-                        const timelineItem = document.createElement('div');
-                        timelineItem.className = 'timeline-item';
-                        
-                        const dot = document.createElement('div');
-                        dot.className = 'timeline-dot';
-                        timelineItem.appendChild(dot);
-                        
-                        const content = document.createElement('div');
-                        content.className = 'timeline-content';
-                        
-                        if (type === 'experience') {
-                            content.innerHTML = `
-                                <strong>${item.title}</strong><br>
-                                ${item.company} • ${item.period}<br>
-                                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
-                                    ${item.details.map(d => `<li>${d}</li>`).join('')}
-                                </ul>
-                            `;
-                        } else if (type === 'projects') {
-                            content.innerHTML = `
-                                <div class="project-card">
-                                    <div class="project-title">${item.name}</div>
-                                    <div class="project-desc">${item.description}</div>
-                                    <div class="project-tech">
-                                        ${item.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
-                                    </div>
-                                </div>
-                            `;
-                        }
-                        
-                        timelineItem.appendChild(content);
-                        timeline.appendChild(timelineItem);
-                        
-                        setTimeout(() => {
-                            timelineItem.classList.add('visible');
-                        }, 50);
-                        
-                        if (idx === items.length - 1 && callback) callback();
-                    }, idx * 200);
+                content.innerHTML = buildTimelineHTML(item, type);
+                ev.appendChild(content);
+                tl.appendChild(ev);
+                requestAnimationFrame(() => ev.classList.add('visible'));
+                if (i === items.length - 1) setTimeout(callback || createInputLine, 400);
+            }, i * 200);
+        });
+
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function buildTimelineHTML(item, type) {
+        if (type === 'experience') {
+            return `<strong>${item.title}</strong> <span class="dates">${item.dates}</span><br>
+<span class="company">${item.company}</span>
+<ul>${item.details.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+        }
+        if (type === 'education') {
+            return `<strong>${item.degree}</strong> <span class="dates">${item.year}</span><br>
+<span class="company">${item.school}</span>
+<ul>${item.details.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+        }
+        if (type === 'skills') {
+            return `<strong>${item.title}</strong><br><ul>${item.details.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+        }
+        if (type === 'projects') {
+            const tags = item.tech.map(t=>`<span class="tech-tag">${t}</span>`).join('');
+            return `<strong>${item.name}</strong><br>${item.desc}<br>
+<a href="${item.link}" target="_blank" style="font-size:11px;color:var(--cyan);">${item.link}</a><br>
+<div style="margin-top:6px;">${tags}</div>`;
+        }
+        if (type === 'certifications') {
+            return `<strong>${item.name}</strong> <span class="dates">${item.date}</span><br>
+<span class="company">${item.issuer}</span><br>
+<span style="font-size:12px;color:var(--fg2);">${item.details}</span>`;
+        }
+        if (type === 'leadership') {
+            return `<strong>${item.role}</strong> <span class="dates">${item.period}</span><br>
+<span class="company">${item.organization}</span><br>
+<span style="font-size:12px;color:var(--fg2);">${item.details}</span>`;
+        }
+        return '';
+    }
+
+    // ── MATRIX RAIN ───────────────────────────────────────────
+    let matrixCanvas = null, matrixInterval = null, isMatrixActive = false;
+
+    function toggleMatrix() {
+        if (isMatrixActive) {
+            clearInterval(matrixInterval); matrixInterval = null;
+            matrixCanvas && matrixCanvas.remove(); matrixCanvas = null;
+            isMatrixActive = false;
+        } else {
+            matrixCanvas = document.createElement('canvas');
+            Object.assign(matrixCanvas.style, { position:'fixed', inset:'0', zIndex:'-1', pointerEvents:'none', width:'100%', height:'100%' });
+            document.body.appendChild(matrixCanvas);
+            const ctx = matrixCanvas.getContext('2d');
+            const resize = () => { matrixCanvas.width = window.innerWidth; matrixCanvas.height = window.innerHeight; };
+            resize();
+            window.addEventListener('resize', resize);
+            const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF';
+            const fs = 13, cols = Math.floor(matrixCanvas.width / fs);
+            const drops = Array(cols).fill(1);
+            matrixInterval = setInterval(() => {
+                ctx.fillStyle = 'rgba(0,0,0,0.05)';
+                ctx.fillRect(0,0,matrixCanvas.width,matrixCanvas.height);
+                ctx.fillStyle = '#9b6dff';
+                ctx.font = fs + 'px monospace';
+                drops.forEach((y,i) => {
+                    ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*fs, y*fs);
+                    if (y*fs > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
                 });
+            }, 40);
+            isMatrixActive = true;
+        }
+    }
+
+    // ── PONG ─────────────────────────────────────────────────
+    function startPong() {
+        const wrap = document.getElementById('pong-modal-wrap');
+        const canvas = document.getElementById('pong-canvas');
+        const ctx = canvas.getContext('2d');
+        wrap.classList.add('open');
+
+        let bx = 200, by = 140, bvx = 4.5, bvy = 2.5;
+        let pad = 90, py = (canvas.height - pad)/2;
+        let animId;
+        let score = [0, 0];
+
+        canvas.onmousemove = e => {
+            const r = canvas.getBoundingClientRect();
+            py = Math.max(0, Math.min(canvas.height - pad, e.clientY - r.top - pad/2));
+        };
+        canvas.addEventListener('touchmove', e => {
+            e.preventDefault();
+            const r = canvas.getBoundingClientRect();
+            py = Math.max(0, Math.min(canvas.height - pad, e.touches[0].clientY - r.top - pad/2));
+        });
+
+        function frame() {
+            bx += bvx; by += bvy;
+            if (by <= 0 || by >= canvas.height) bvy = -bvy;
+            if (bx > canvas.width - 14 && by > py && by < py + pad) {
+                bvx = -bvx;
+                bvy += (by - (py + pad/2)) * 0.04;
             }
+            if (bx < 12) { bvx = -bvx; score[1]++; }
+            if (bx > canvas.width) { score[0]++; bx = 200; by = 140; bvx = -Math.abs(bvx); shootConfetti(); }
+
+            ctx.fillStyle = '#000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.strokeStyle = 'rgba(155,109,255,0.2)'; ctx.setLineDash([6,8]);
+            ctx.beginPath(); ctx.moveTo(canvas.width/2,0); ctx.lineTo(canvas.width/2,canvas.height); ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#9b6dff'; ctx.fillRect(0, 0, 8, canvas.height);
+            ctx.fillStyle = '#00e5c9'; ctx.fillRect(canvas.width - 10, py, 8, pad);
+
+            ctx.fillStyle = '#ff4d8d';
+            ctx.beginPath(); ctx.arc(bx,by,7,0,Math.PI*2); ctx.fill();
+
+            ctx.fillStyle = 'rgba(232,228,255,0.4)'; ctx.font = '13px monospace';
+            ctx.fillText(score[0], canvas.width/2 - 24, 20);
+            ctx.fillText(score[1], canvas.width/2 + 14, 20);
+
+            animId = requestAnimationFrame(frame);
         }
-        
-        // Add output to terminal
-        function addOutput(text, callback) {
-            const output = document.createElement('div');
-            output.className = 'output';
-            terminal.appendChild(output);
-            
-            setTimeout(() => output.classList.add('visible'), 10);
-            
-            if (text === 'timeline-experience') {
-                renderTimeline(portfolioData.experience, output, callback, 'experience');
-            } else if (text === 'timeline-skills') {
-                renderTimeline(portfolioData.skills, output, callback, 'skills');
-            } else if (text === 'timeline-projects') {
-                renderTimeline(portfolioData.projects, output, callback, 'projects');
-            } else if (text === 'stats') {
-                const statsText = `📊 Portfolio Statistics:
-                
-🎯 Total Projects: ${document.getElementById('projectsCount').textContent}
-💼 Years Experience: ${document.getElementById('experienceCount').textContent}
-⚡ Technologies Mastered: ${document.getElementById('techCount').textContent}
-🎉 Happy Clients: ${document.getElementById('clientCount').textContent}
-🏆 Certifications: 3
-📝 Publications: 3
-🚀 Current Status: Available for opportunities`;
-                typeOutput(statsText, output, callback, 30);
-            } else {
-                typeOutput(text, output, callback, 25);
-            }
-        }
-        
-        // Create input line
-        function createInputLine() {
-            const inputLine = document.createElement('div');
-            inputLine.id = 'input-line';
-            inputLine.innerHTML = `
-                <span id="prompt" style="color: var(--success);">➜</span>
-                <span style="color: var(--accent-primary);"> ~/portfolio</span>
-                <span style="color: var(--text-secondary);"> $</span>
-                <input id="input" type="text" autocomplete="off" style="flex: 1; background: none; border: none; color: var(--text-primary); outline: none; font-family: monospace;">
-            `;
-            terminal.appendChild(inputLine);
-            
-            const input = document.getElementById('input');
-            input.focus();
-            input.addEventListener('keydown', handleInput);
-            terminal.scrollTop = terminal.scrollHeight;
-        }
-        
-        // Execute command
-        function executeCommand(command) {
-            if (isTyping) return;
-            command = command.trim().toLowerCase();
-            
-            const echo = document.createElement('div');
-            echo.innerHTML = `<span style="color: var(--success);">➜</span> <span style="color: var(--accent-primary);">~/portfolio</span> <span style="color: var(--text-secondary);">$</span> <span class="command">${command}</span>`;
-            terminal.appendChild(echo);
-            
-            setTimeout(() => echo.classList.add('visible'), 10);
-            
-            if (command) {
-                history.unshift(command);
-                historyIndex = -1;
-                
-                if (commands[command]) {
-                    if (command === 'clear') {
-                        terminal.innerHTML = '';
-                        createInputLine();
-                    } else {
-                        const result = typeof commands[command] === 'function' ? commands[command]() : commands[command];
-                        addOutput(result, createInputLine);
-                    }
-                } else {
-                    addOutput(`❌ Command not found: "${command}". Type 'help' for available commands.`, createInputLine);
-                }
-            } else {
-                createInputLine();
-            }
-        }
-        
-        // Handle input
-        function handleInput(e) {
-            if (isTyping && e.key !== 'Enter') return;
-            const input = e.target;
-            
-            if (e.key === 'Enter') {
-                const command = input.value;
-                const inputLine = input.parentNode;
-                terminal.removeChild(inputLine.parentNode);
-                executeCommand(command);
-            } else if (e.key === 'ArrowUp') {
-                if (historyIndex < history.length - 1) {
-                    historyIndex++;
-                    input.value = history[historyIndex];
-                }
-            } else if (e.key === 'ArrowDown') {
-                if (historyIndex > -1) {
-                    historyIndex--;
-                    input.value = historyIndex > -1 ? history[historyIndex] : '';
-                }
-            }
-        }
-        
-        // Initialize
-        function init() {
+        animId = requestAnimationFrame(frame);
+
+        document.getElementById('pong-close').onclick = () => {
+            cancelAnimationFrame(animId);
+            wrap.classList.remove('open');
             createInputLine();
-            addOutput(`╔══════════════════════════════════════════════════════════╗
-║     Welcome to my interactive portfolio terminal! 🚀     ║
-╠══════════════════════════════════════════════════════════╣
-║  Type 'help' to see all available commands              ║
-║  or click the buttons above to get started.             ║
-║                                                          ║
-║  This modern, eye-friendly CLI experience showcases     ║
-║  my skills as a Software Engineer & AI Specialist.      ║
-║                                                          ║
-║  💡 Pro tip: The stats above animate on load!           ║
-╚══════════════════════════════════════════════════════════╝`, () => {});
-            
-            animateStats();
+        };
+    }
+
+    // ── QR CODE ───────────────────────────────────────────────
+    function showQR() {
+        document.getElementById('qr-modal-wrap').classList.add('open');
+        new QRious({
+            element: document.getElementById('qr-code'),
+            value: `BEGIN:VCARD\nVERSION:3.0\nFN:Paulin Clement Twakeshimana\nTEL:${portfolioData.contact.phone}\nEMAIL:${portfolioData.contact.email}\nURL:${portfolioData.contact.linkedin}\nEND:VCARD`,
+            size: 180, background: '#04030a', foreground: '#9b6dff'
+        });
+        document.getElementById('qr-close').onclick = () => {
+            document.getElementById('qr-modal-wrap').classList.remove('open');
+            createInputLine();
+        };
+    }
+
+    // ── CONFETTI ──────────────────────────────────────────────
+    function shootConfetti() {
+        if (typeof confetti !== 'undefined') confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#9b6dff','#00e5c9','#ff4d8d','#ffa940','#4dffb0'] });
+    }
+
+    // ── THEME SWITCHER ────────────────────────────────────────
+    const themes = ['default','neon','aurora','ember','void'];
+    let themeIdx = 0;
+    document.getElementById('theme-switcher').onclick = () => {
+        themeIdx = (themeIdx + 1) % themes.length;
+        document.body.setAttribute('data-theme', themes[themeIdx]);
+        localStorage.setItem('portfolio-theme', themes[themeIdx]);
+        addOutput(`<span class="c-violet">theme →</span> <span class="highlight">${themes[themeIdx]}</span>`, null);
+    };
+
+    // Restore theme
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved && themes.includes(saved)) {
+        themeIdx = themes.indexOf(saved);
+        document.body.setAttribute('data-theme', saved);
+    }
+
+    // ── KONAMI ────────────────────────────────────────────────
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+    let kPos = 0;
+    document.addEventListener('keydown', e => {
+        if (e.code === konami[kPos]) { kPos++; if (kPos === konami.length) { kPos = 0; shootConfetti(); addOutput('<span class="success">KONAMI CODE ACTIVATED</span> — dev mode unlocked 🎉', createInputLine); } }
+        else kPos = 0;
+    });
+
+    // ── INIT ──────────────────────────────────────────────────
+    createInputLine();
+    addOutput(`<span class="c-violet">∴ portfolio cli v3.0</span> — <span class="c-dimmer">type</span> <span class="c-cyan">help</span> <span class="c-dimmer">to begin</span>`, null, 30);
+    setTimeout(() => addOutput(`<span class="c-dimmer">tip:</span> use <span class="c-amber">tab</span> to autocomplete commands`, null), 800);
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // ── DEEPSEEK CHAT ────────────────────────────────────────
+    (function() {
+        var SYSTEM_PROMPT = "You are a helpful AI assistant embedded in Paulin Clement Twakeshimana's portfolio website. Answer visitors' questions about Paulin in a friendly, concise, professional way.\n\nKEY FACTS:\n- Name: Paulin Clement Twakeshimana\n- Role: Software Engineer & AI Specialist, based in Hong Kong\n- Experience: AI Research Engineer at Tech Innovations Ltd (2022-Present). Full-Stack Developer at Web Solutions Inc (2020-2022) serving 50K+ users. Intern at Global Tech (2019-2020).\n- Skills: ML, Deep Learning, Computer Vision, NLP, TensorFlow, PyTorch, React, Node.js, TypeScript, Python, Java, Docker, AWS, Azure.\n- Education: MSc AI - HK Polytechnic (GPA 3.8). BSc CS - University of Rwanda (GPA 3.7, Honors).\n- Projects: AI Quality Control (95% accuracy), 3D Portfolio (Three.js), Collaborative Editor.\n- Certifications: AWS ML Specialty, TensorFlow Dev (Google), Azure AI Engineer (Microsoft).\n- Contact: paulin.twakeshimana@example.com | +852 9123 4567\n\nKeep answers concise. Only discuss Paulin's professional background.";
+
+        var panel      = document.getElementById('chat-panel');
+        var toggleBtn  = document.getElementById('chat-toggle-btn');
+        var closeBtn   = document.getElementById('chat-close-btn');
+        var messages   = document.getElementById('chat-messages');
+        var chatInput  = document.getElementById('chat-input');
+        var sendBtn    = document.getElementById('chat-send-btn');
+        var apiBar     = document.getElementById('chat-api-bar');
+        var apiInput   = document.getElementById('chat-api-input');
+        var apiSave    = document.getElementById('chat-api-save');
+        var statusDot  = document.getElementById('chat-status-dot');
+        var statusText = document.getElementById('chat-status-text');
+
+        var apiKey = localStorage.getItem('ds-api-key') || '';
+        var chatHistory = [];
+        var isStreaming = false;
+
+        function refreshApiBar() {
+            if (apiKey) { apiBar.classList.add('hidden'); }
+            else { apiBar.classList.remove('hidden'); }
         }
-        
-        // Make executeCommand available globally
-        window.executeCommand = executeCommand;
-        
-        // Start
-        init();
+        refreshApiBar();
+
+        apiSave.onclick = function() {
+            var v = apiInput.value.trim();
+            if (!v) return;
+            apiKey = v;
+            localStorage.setItem('ds-api-key', apiKey);
+            refreshApiBar();
+            appendMsg('ai', 'API key saved! Ask me anything about Paulin.');
+        };
+
+        toggleBtn.onclick = function() {
+            panel.classList.toggle('open');
+            if (panel.classList.contains('open')) chatInput.focus();
+        };
+        closeBtn.onclick = function() { panel.classList.remove('open'); };
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') panel.classList.remove('open'); });
+
+        chatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+        });
+        sendBtn.onclick = handleSend;
+
+        window.sendSuggestion = function(btn) {
+            chatInput.value = btn.textContent;
+            document.getElementById('chat-suggestions').style.display = 'none';
+            handleSend();
+        };
+
+        function appendMsg(role, text) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chat-msg chat-msg-' + role;
+            var bubble = document.createElement('div');
+            bubble.className = 'chat-bubble';
+            bubble.textContent = text;
+            wrap.appendChild(bubble);
+            messages.appendChild(wrap);
+            messages.scrollTop = messages.scrollHeight;
+            return bubble;
+        }
+
+        function showTyping() {
+            var wrap = document.createElement('div');
+            wrap.className = 'chat-msg chat-msg-ai';
+            wrap.id = 'typing-indicator';
+            wrap.innerHTML = '<div class="chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            messages.appendChild(wrap);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTyping() {
+            var el = document.getElementById('typing-indicator');
+            if (el) el.remove();
+        }
+
+        function setStatus(thinking) {
+            if (thinking) { statusDot.classList.add('thinking'); statusText.textContent = 'thinking\u2026'; }
+            else { statusDot.classList.remove('thinking'); statusText.textContent = 'powered by DeepSeek'; }
+        }
+
+        async function handleSend() {
+            var text = chatInput.value.trim();
+            if (!text || isStreaming) return;
+            if (!apiKey) {
+                apiBar.classList.remove('hidden');
+                apiInput.focus();
+                appendMsg('ai', 'Please enter your DeepSeek API key above to start chatting.');
+                return;
+            }
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            isStreaming = true;
+            appendMsg('user', text);
+            chatHistory.push({ role: 'user', content: text });
+            showTyping();
+            setStatus(true);
+            try {
+                var res = await fetch('https://api.deepseek.com/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+                    body: JSON.stringify({
+                        model: 'deepseek-chat',
+                        messages: [{ role: 'system', content: SYSTEM_PROMPT }].concat(chatHistory),
+                        stream: true, max_tokens: 500, temperature: 0.7
+                    })
+                });
+                removeTyping();
+                if (!res.ok) {
+                    var errData = await res.json().catch(function(){ return {}; });
+                    var msg = (errData && errData.error && errData.error.message) ? errData.error.message : ('API error ' + res.status);
+                    if (res.status === 401) { apiKey = ''; localStorage.removeItem('ds-api-key'); refreshApiBar(); appendMsg('ai', 'Invalid API key \u2014 please re-enter it above.'); }
+                    else { appendMsg('ai', 'Error: ' + msg); }
+                    return;
+                }
+                var bubble = appendMsg('ai', '');
+                var reader = res.body.getReader();
+                var decoder = new TextDecoder();
+                var fullText = '';
+                while (true) {
+                    var chunk = await reader.read();
+                    if (chunk.done) break;
+                    var lines = decoder.decode(chunk.value, { stream: true }).split('\n');
+                    for (var i = 0; i < lines.length; i++) {
+                        var line = lines[i];
+                        if (!line.startsWith('data: ')) continue;
+                        var data = line.slice(6).trim();
+                        if (data === '[DONE]') break;
+                        try {
+                            var parsed = JSON.parse(data);
+                            var delta = parsed.choices && parsed.choices[0] && parsed.choices[0].delta && parsed.choices[0].delta.content ? parsed.choices[0].delta.content : '';
+                            fullText += delta;
+                            bubble.textContent = fullText;
+                            messages.scrollTop = messages.scrollHeight;
+                        } catch(e) {}
+                    }
+                }
+                chatHistory.push({ role: 'assistant', content: fullText });
+            } catch(err) {
+                removeTyping();
+                appendMsg('ai', 'Network error: ' + err.message);
+            } finally {
+                isStreaming = false;
+                sendBtn.disabled = false;
+                setStatus(false);
+                chatInput.focus();
+            }
+        }
+    })();
+    });
+
+
     </script>
+
 </body>
 </html>
